@@ -98,19 +98,19 @@
   ];
 
   const PROJECT_TEMPLATES = [
-    { title: 'PRD (Product Requirements Doc) Template', file: 'PRD_Template.txt' },
-    { title: 'Project Brief / Charter Template', file: 'Project_Brief_Charter_Template.txt' },
-    { title: 'Retrospective Template', file: 'Retrospective_Template.txt' },
-    { title: 'Risk Register Template', file: 'Risk_Register_Template.txt' },
-    { title: 'Status Report Template', file: 'Status_Report_Template.txt' },
+    { title: 'PRD (Product Requirements Doc) Template', file: 'PRD_Template.docx' },
+    { title: 'Project Brief / Charter Template', file: 'Project_Brief_Charter_Template.docx' },
+    { title: 'Retrospective Template', file: 'Retrospective_Template.docx' },
+    { title: 'Risk Register Template', file: 'Risk_Register_Template.docx' },
+    { title: 'Status Report Template', file: 'Status_Report_Template.docx' },
   ].map((t) => ({ title: t.title, tag: 'Published v1', tagClass: 'tag-accent', href: 'files/' + t.file }));
 
   const RESOURCE_TEMPLATES = [
-    { title: 'Email templates (candidate outreach, client comms, etc.)', file: 'Email_Templates.txt' },
-    { title: 'Meeting notes template', file: 'Meeting_Notes_Template.txt' },
-    { title: 'Presentation / deck template', file: 'Canopi_Presentation_Template.txt' },
-    { title: 'Proposal template', file: 'Proposal_Template.txt' },
-    { title: 'SOP / process doc template', file: 'SOP_Process_Doc_Template.txt' },
+    { title: 'Email templates (candidate outreach, client comms, etc.)', file: 'Email_Templates.docx' },
+    { title: 'Standard Minutes Template', file: 'Standard_Minutes_Template.docx' },
+    { title: 'Presentation / deck template', file: 'Canopi_Presentation_Template.pptx' },
+    { title: 'Proposal template', file: 'Proposal_Template.docx' },
+    { title: 'SOP / process doc template', file: 'SOP_Process_Doc_Template.docx' },
   ].map((t) => ({ title: t.title, tag: 'Published v1', tagClass: 'tag-accent', href: 'files/' + t.file }));
 
   const RESOURCE_FORMS = [
@@ -837,7 +837,7 @@
       </tbody></table>
       <h2>Related Documents</h2>
       <ul>
-        <li>Meeting notes template (Resources &gt; Templates)</li>
+        <li>Standard Minutes Template (Resources &gt; Templates)</li>
         <li><a href="#kb-bp-slackemail">Slack / Email Communication Norms</a></li>
       </ul>
     `,

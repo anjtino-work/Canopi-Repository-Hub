@@ -1,3 +1,0 @@
-Risk Register Template
-
-Risk | Likelihood | Impact | Owner | Mitigation
