@@ -1,0 +1,7 @@
+Status Report Template
+
+Period:
+Summary:
+Milestones:
+Blockers:
+Next steps:
