@@ -397,7 +397,7 @@
       [{ label: 'Home', route: 'home' }, { label: 'Meetings', route: 'meetings' }, { label: 'One-on-One Minutes' }],
       'One-on-One Minutes', 'The minutes template is downloadable here. Recurring notes link out to SharePoint folders shared only with the specific people involved &mdash; nobody else can open them.',
       [
-        { title: 'Manager 1:1 Minutes Template', tag: 'Published v1', tagClass: 'tag-accent' },
+        { title: 'Manager 1:1 Minutes Template', tag: 'Published v1', tagClass: 'tag-accent', href: 'files/Standard_Minutes_Template.docx', hrefDownload: true },
         { title: 'Recurring 1:1 Notes (per employee, private)' },
       ]
     ),
