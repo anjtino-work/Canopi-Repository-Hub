@@ -398,7 +398,7 @@
       'One-on-One Minutes', 'The minutes template is downloadable here. Recurring notes link out to SharePoint folders shared only with the specific people involved &mdash; nobody else can open them.',
       [
         { title: 'Manager 1:1 Minutes Template', tag: 'Published v1', tagClass: 'tag-accent', href: 'files/Standard_Minutes_Template.docx', hrefDownload: true },
-        { title: 'Recurring 1:1 Notes (per employee, private)' },
+        { title: 'Recurring 1:1 Notes (per employee, private)', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgDsXs_YK6f_ToTie2fvwi2EARVQepOayQPvOnJCrgcH2CA?e=dwskKI', hrefExternal: true },
       ]
     ),
     'kb-sops': () => docListHTML(
