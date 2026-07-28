@@ -12,43 +12,6 @@
     { key: 'team-spaces', label: 'Team Spaces' },
   ];
 
-  const SEARCH_INDEX = [
-    { title: 'New Hire Onboarding & Equipment Setup SOP', route: 'kb-sops', keywords: 'onboarding new hire equipment setup sop hr' },
-    { title: 'Hiring & Recruitment SOP', route: 'kb-sops', keywords: 'hiring recruitment interview sop candidate' },
-    { title: 'SOPs', route: 'kb-sops', keywords: 'sop standard operating procedure process' },
-    { title: 'Process Documentation', route: 'kb', keywords: 'process documentation how-to' },
-    { title: 'Policies', route: 'kb-policies', keywords: 'policy handbook conduct nda privacy security harassment acceptable use' },
-    { title: 'Best Practices', route: 'kb', keywords: 'best practices guidelines meeting etiquette slack email documentation writing' },
-    { title: 'FAQs', route: 'kb-faqs', keywords: 'faq questions new hire it equipment contact tool access' },
-    { title: 'Active Projects', route: 'projects-active', keywords: 'project active ongoing live status owner target date' },
-    { title: 'Completed Projects', route: 'projects', keywords: 'project completed done shipped archive retrospective' },
-    { title: 'Templates', route: 'resources', keywords: 'template starter file' },
-    { title: 'Leadership Meetings', route: 'meetings', keywords: 'leadership meeting exec' },
-    { title: 'Team Meetings', route: 'meetings', keywords: 'team meeting standup sync' },
-    { title: 'Forms', route: 'resources', keywords: 'form request equipment exit interview it support directory' },
-    { title: 'Brand Assets', route: 'resources', keywords: 'brand logo assets design' },
-    { title: 'Shared Documents', route: 'resources', keywords: 'shared document editable external links' },
-    { title: 'Executive Team space', route: 'team-spaces', keywords: 'executive leadership team' },
-    { title: 'Product Team space', route: 'team-spaces', keywords: 'product team' },
-    { title: 'Engineering Team space', route: 'team-spaces', keywords: 'engineering team' },
-    { title: 'Offboarding SOP', route: 'kb-sop-detail', keywords: 'offboarding exit departure termination sop' },
-    { title: 'IT/System Access Request SOP', route: 'kb-sops', keywords: 'it access request sop system tool' },
-    { title: 'PTO / Leave Request SOP', route: 'kb-sops', keywords: 'pto leave request time off sop' },
-    { title: 'Performance Review & Feedback Cycle SOP', route: 'kb-sops', keywords: 'performance review feedback cycle sop' },
-    { title: 'Code of Conduct', route: 'kb-policy-detail', keywords: 'code of conduct behavior policy' },
-    { title: 'Remote Work / Work-From-Home Policy', route: 'kb-policies', keywords: 'remote work wfh policy' },
-    { title: 'Equal Opportunity / Anti-Harassment Policy', route: 'kb-policies', keywords: 'equal opportunity anti harassment policy' },
-    { title: 'Acceptable Use Policy', route: 'kb-policies', keywords: 'acceptable use policy devices software accounts' },
-    { title: 'IT & Equipment FAQ', route: 'kb-faqs', keywords: 'it equipment faq' },
-    { title: 'New Hire FAQ', route: 'kb-faq-detail', keywords: 'new hire faq first week payroll benefits' },
-    { title: 'Employee Handbook', route: 'kb-policies', keywords: 'employee handbook welcome conduct compensation time off' },
-    { title: 'Confidentiality & NDA Policy', route: 'kb-policies', keywords: 'confidentiality nda non-disclosure policy' },
-    { title: 'Example Project: Repository Site Rollout', route: 'project-detail', keywords: 'example project repository site rollout charter roadmap risk' },
-    { title: 'Project Templates', route: 'projects', keywords: 'project brief charter prd retrospective status report risk register template' },
-    { title: 'One-on-One Minutes', route: 'meetings', keywords: '1:1 one on one agenda manager template' },
-    { title: 'Resource Templates', route: 'resources', keywords: 'sop template meeting notes email deck proposal template' },
-  ];
-
   const SOPS = [
     { title: 'Customer Escalation Handling SOP', tag: 'Coming Soon', tagClass: 'tag-outline' },
     { title: 'Expense Reimbursement SOP', tag: 'Coming Soon', tagClass: 'tag-outline' },
@@ -417,6 +380,77 @@
       FAQS.map((s) => ({ title: s.title, tag: s.tag, tagClass: s.tagClass, route: s.route }))
     ),
   };
+
+  // ---------- search index: every real item on the site, not just section labels ----------
+  // Built from the same data arrays that render the pages, so anything added to
+  // SOPS/POLICIES/etc. is automatically searchable — nothing to keep in sync by hand.
+  const SEARCH_INDEX = [];
+
+  function indexFrom(list, meta, mapDest) {
+    list.forEach((item) => {
+      const dest = mapDest(item);
+      const title = item.title || item.label;
+      if (!dest) {
+        SEARCH_INDEX.push({ title, meta, comingSoon: true });
+        return;
+      }
+      SEARCH_INDEX.push(Object.assign({ title, meta }, dest));
+    });
+  }
+
+  indexFrom(SOPS, 'Knowledge Base \u203a SOPs', (s) => s.route ? { route: s.route } : null);
+  indexFrom(POLICIES, 'Knowledge Base \u203a Policies', (s) => s.route ? { route: s.route } : null);
+  indexFrom(FAQS, 'Knowledge Base \u203a FAQs', (s) => s.route ? { route: s.route } : null);
+  indexFrom(PROCESS_DOCS, 'Knowledge Base \u203a Process Documentation', () => null);
+  indexFrom(BEST_PRACTICES, 'Knowledge Base \u203a Best Practices', (s) => s.route ? { route: s.route } : null);
+  indexFrom(PROJECT_TEMPLATES, 'Projects \u203a Templates', (s) => ({ href: s.href, download: true }));
+  indexFrom(RESOURCE_TEMPLATES, 'Resources \u203a Templates', (s) => ({ href: s.href, download: true }));
+  indexFrom(RESOURCE_FORMS, 'Resources \u203a Forms', (s) => s.href ? { href: s.href, external: true } : null);
+
+  const EXTRA_SEARCH_ITEMS = [
+    // section landing pages
+    { title: 'Knowledge Base', meta: 'Home', route: 'kb', keywords: 'sop policy faq best practice process documentation' },
+    { title: 'Projects', meta: 'Home', route: 'projects', keywords: 'active completed templates documentation' },
+    { title: 'Meetings', meta: 'Home', route: 'meetings', keywords: 'team one-on-one 1:1 minutes' },
+    { title: 'Resources', meta: 'Home', route: 'resources', keywords: 'templates forms brand assets shared documents' },
+    { title: 'Team Spaces', meta: 'Home', route: 'team-spaces', keywords: 'executive product engineering' },
+    { title: 'Active Projects', meta: 'Projects', route: 'projects-active', keywords: 'project tracker live excel status owner target date' },
+    { title: 'Example Project: Repository Site Rollout', meta: 'Projects \u203a Active Projects', route: 'project-detail', keywords: 'example project repository site rollout charter roadmap risk' },
+    // projects > completed
+    { title: 'Project Archive', meta: 'Projects \u203a Completed Projects', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgC2_HhAyBdYQK4PzWe3d3nfAdN2EnTAyrq3hoH6V6jO5Uk?e=Z0p5Rr', external: true },
+    { title: 'Retrospectives / Post-Mortems', meta: 'Projects \u203a Completed Projects', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgCXMLOU9s6GTbwgoUJ-cxJkAUVEwWbLDKDhTLXS9b-UrCU?e=AAdOUo', external: true },
+    { title: 'Lessons-Learned Summaries', meta: 'Projects \u203a Completed Projects', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgDwlZ6QdhOgTJPtUoSL52n6AfEUE1nwzb-lmUA0YOUemas', external: true },
+    { title: 'Case Studies', meta: 'Projects \u203a Completed Projects', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgBIr6mmyZnRRLQh4sSyK5VSAYszSqSBv6IjhfLjqKUg0-Q', external: true },
+    // projects > documentation
+    { title: 'Architecture Decision Records (ADRs)', meta: 'Projects \u203a Documentation', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgDEN3t3jFKSTZw5h9y_hpSYAaf9Roa3zxBUEj0CbRJ-MzA?e=6R6YOa', external: true },
+    { title: 'Technical Design Docs', meta: 'Projects \u203a Documentation', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgD0_TLoH7jTSKLDOIkDXXW_ASH8IunNJ1nePlF2gtrZQ8c?e=swTl4O', external: true },
+    { title: 'Stakeholder & RACI Lists', meta: 'Projects \u203a Documentation', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgDMUqsph3rOR4oH8argnMuAARNTq7jd1ObgwcfEpqvvrYA?e=XwI539', external: true },
+    { title: 'Requirements Docs & Acceptance Criteria', meta: 'Projects \u203a Documentation', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgDwn1bHxvzOQaseWSx7G6waAcc9pIS-5htqteA-63evpzM?e=rN7Srs', external: true },
+    // meetings
+    { title: 'Cross-Team (Product \u00d7 Engineering) Sync Notes', meta: 'Meetings \u203a Team Meetings', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgBlS07acRA8Rr8WgIv42YIHAbDQcyIbyfS1ELvhLbdg0IU?e=jdeGaI', external: true },
+    { title: 'Weekly Team Meeting Notes', meta: 'Meetings \u203a Team Meetings', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgD5UZ53icCgTa7K2X9vkfoIAYdNwAFzQ3ozU4Yhqh8RemY?e=IUrcAE', external: true },
+    { title: 'Manager 1:1 Minutes Template', meta: 'Meetings \u203a One-on-One Minutes', href: 'files/Standard_Minutes_Template.docx', download: true },
+    { title: 'Recurring 1:1 Notes (per employee, private)', meta: 'Meetings \u203a One-on-One Minutes', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgDsXs_YK6f_ToTie2fvwi2EARVQepOayQPvOnJCrgcH2CA?e=dwskKI', external: true },
+    // resources
+    { title: 'Brand Assets', meta: 'Resources', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgC3JSp0HpBOSLVFFR4ujSnPAfpYlcfj-HFJf6T4Uf-6QeU?e=FIoTGv', external: true, keywords: 'logo design brand' },
+    { title: 'Executive Team Shared Resources', meta: 'Resources \u203a Shared Documents', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgArHEyMAsdiRZxVUxacmwWNAZnUOpeA_VEB0IAYOo0L7VA?e=ORBpC2', external: true },
+    { title: 'Product Team Shared Resources', meta: 'Resources \u203a Shared Documents', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgCVl4ZF4NDrRYpMpja4jJFKAYtF9ofzj7m4dS8sP-FUP4k?e=pjfigk', external: true },
+    { title: 'Engineering Team Shared Resources', meta: 'Resources \u203a Shared Documents', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgBUmOpB5_QFTaOL7yPufTvBAQW-Xf4nRLJK8cXa_GvS4jw?e=vcvBgr', external: true },
+    // team spaces
+    { title: 'Executive Team', meta: 'Team Spaces', route: 'team-executive' },
+    { title: 'Product Team', meta: 'Team Spaces', route: 'team-product' },
+    { title: 'Engineering Team', meta: 'Team Spaces', route: 'team-engineering' },
+    { title: 'Executive Team Meeting Notes', meta: 'Team Spaces \u203a Executive Team', route: 'team-executive-notes' },
+    { title: 'Product Team Meeting Notes', meta: 'Team Spaces \u203a Product Team', route: 'team-product-notes' },
+    { title: 'Engineering Team Meeting Notes', meta: 'Team Spaces \u203a Engineering Team', route: 'team-engineering-notes' },
+    { title: 'All-Hands Meeting Notes', meta: 'Team Spaces \u203a Executive Team', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgAzRgtyIcrKR5rZp7yDdLA1AdXS78fe6F-Rjk7KaxKlm5c?e=xEjm4O', external: true },
+    { title: 'Budget & Headcount Planning', meta: 'Team Spaces \u203a Executive Team', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgAvxiFdWDVyQZt9ecmKfAbQAQL05bhop47N13jEM45fYZ4?e=T3nsMk', external: true },
+    { title: 'Quarterly Planning / OKR Review', meta: 'Team Spaces \u203a Executive Team', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgB6Xb_uczHUT4RqobHFwCMgAejEVp6GuGE4X-z4g8w-rNc?e=76kKej', external: true },
+    { title: 'Weekly Exec Sync', meta: 'Team Spaces \u203a Executive Team', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgBT7dKh8W8PTZm4U1NHu_ikAcKRAGm9uY3aWje86l9mqjg?e=YXHVKU', external: true },
+    { title: 'Product Team Sync Notes', meta: 'Team Spaces \u203a Product Team', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgAx_z5m36YxSbgDRXQ-onYEAU7bf7q9ksvOIgss6A8esVo?e=nddx2J', external: true },
+    { title: 'Engineering Standup / Sprint Planning & Retro Notes', meta: 'Team Spaces \u203a Engineering Team', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgDa5cTd-CFCQZDp-yKRcvnmAWhaIqn9Oen3oFTTR8hIi3g?e=geyfk2', external: true },
+  ];
+  SEARCH_INDEX.push(...EXTRA_SEARCH_ITEMS);
 
   // ---------- detail pages (static content) ----------
   const DETAIL_PAGES = {
@@ -1003,6 +1037,16 @@
     wireSearch();
   }
 
+  function searchResultHTML(item) {
+    const meta = (item.meta || '') + (item.comingSoon ? ' — Coming soon' : item.download ? ' — download' : item.external ? ' — opens SharePoint' : '');
+    const inner = '<span class="search-result-title">' + item.title + '</span>' +
+      (meta ? '<span class="search-result-meta">' + meta + '</span>' : '');
+    if (item.comingSoon) return '<span class="search-result-row search-result-disabled">' + inner + '</span>';
+    if (item.route) return '<a href="#' + item.route + '" class="search-result-row">' + inner + '</a>';
+    if (item.download) return '<a href="' + item.href + '" download class="search-result-row">' + inner + '</a>';
+    return '<a href="' + item.href + '" target="_blank" rel="noopener" class="search-result-row">' + inner + '</a>';
+  }
+
   function wireSearch() {
     const input = document.getElementById('search-input');
     if (!input) return;
@@ -1010,13 +1054,12 @@
     input.addEventListener('input', () => {
       const q = input.value.trim().toLowerCase();
       if (!q) { resultsEl.innerHTML = ''; return; }
-      const matches = SEARCH_INDEX.filter((i) => (i.title + ' ' + i.keywords).toLowerCase().indexOf(q) !== -1).slice(0, 8);
+      const matches = SEARCH_INDEX.filter((i) => (i.title + ' ' + (i.keywords || '') + ' ' + (i.meta || '')).toLowerCase().indexOf(q) !== -1).slice(0, 20);
       if (!matches.length) {
         resultsEl.innerHTML = '<div class="search-results"><div class="search-empty">No matches</div></div>';
         return;
       }
-      resultsEl.innerHTML = '<div class="search-results">' +
-        matches.map((m) => '<a href="#' + m.route + '">' + m.title + '</a>').join('') + '</div>';
+      resultsEl.innerHTML = '<div class="search-results">' + matches.map(searchResultHTML).join('') + '</div>';
     });
   }
 
