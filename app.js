@@ -1091,10 +1091,11 @@
 
   function homeHTML() {
     const recentUpdates = [
-      { title: 'Offboarding SOP', meta: 'Published', route: 'kb-sop-detail' },
-      { title: 'Code of Conduct', meta: 'Published', route: 'kb-policy-detail' },
-      { title: 'New Hire FAQ', meta: 'Published', route: 'kb-faq-detail' },
-      { title: '+ 10 more added', meta: 'Today', route: 'kb' },
+      { title: 'Recurring 1:1 Notes', meta: 'Today', route: 'meetings-1on1-recurring' },
+      { title: 'Investor Relations', meta: 'Today', route: 'resources-investor' },
+      { title: 'Market Research', meta: 'Today', route: 'projects-completed-lessons' },
+      { title: "Stakeholder's Records", meta: 'Today', route: 'projects-documentation-raci' },
+      { title: 'Product Team Shared Resources', meta: 'Today', route: 'team-product-shared' },
     ];
     const updateRows = recentUpdates.map((u, i) =>
       '<a href="#' + u.route + '" class="update-row' + (i === 0 ? ' featured' : '') + '">' +
