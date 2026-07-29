@@ -199,6 +199,20 @@
       '<div class="doclist">' + rows.map(docRowHTML).join('') + '</div>';
   }
 
+  const CONTRIBUTE_FORM_URL = 'https://forms.cloud.microsoft/r/8cPduYGSqV';
+  function contributeButtonHTML(lead) {
+    return '<p class="section-lead">' + lead + '</p>' +
+      '<a href="' + CONTRIBUTE_FORM_URL + '" target="_blank" rel="noopener" class="btn btn-primary">Contribute a document</a>';
+  }
+  function emptyStateHTML(crumbItems, title) {
+    return crumb(crumbItems) + '<h1>' + title + '</h1>' +
+      '<div class="empty-state">' +
+        '<p class="empty-state-title">No available data</p>' +
+        '<p class="empty-state-body">Nothing has been added here yet. If you have a document for this section, contribute it and it&rsquo;ll get added.</p>' +
+        '<a href="' + CONTRIBUTE_FORM_URL + '" target="_blank" rel="noopener" class="btn btn-primary">Contribute</a>' +
+      '</div>';
+  }
+
   // ---------- section index route table ----------
   const SECTION_INDEXES = {
     kb: () => sectionIndexHTML(
@@ -252,38 +266,38 @@
     ),
     'projects-completed': () => sectionIndexHTML(
       [{ label: 'Home', route: 'home' }, { label: 'Projects', route: 'projects' }, { label: 'Completed Projects' }],
-      'Completed Projects', 'These link out to the actual SharePoint folders where files are stored &mdash; browse and add files there directly, not on this site.',
+      'Completed Projects', "Nothing's been added yet for any of these &mdash; open one and use Contribute to submit a document.",
       [
-        { label: 'Project Archive', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgC2_HhAyBdYQK4PzWe3d3nfAdN2EnTAyrq3hoH6V6jO5Uk?e=Z0p5Rr' },
-        { label: 'Retrospectives / Post-Mortems', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgCXMLOU9s6GTbwgoUJ-cxJkAUVEwWbLDKDhTLXS9b-UrCU?e=AAdOUo' },
-        { label: 'Lessons-Learned Summaries', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgDwlZ6QdhOgTJPtUoSL52n6AfEUE1nwzb-lmUA0YOUemas' },
-        { label: 'Case Studies', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgBIr6mmyZnRRLQh4sSyK5VSAYszSqSBv6IjhfLjqKUg0-Q' },
-      ].map((c) => withIcon(Object.assign({}, c, { external: true })))
+        { label: 'Project Archive', route: 'projects-completed-archive' },
+        { label: 'Retrospectives / Post-Mortems', route: 'projects-completed-retro' },
+        { label: 'Lessons-Learned Summaries', route: 'projects-completed-lessons' },
+        { label: 'Case Studies', route: 'projects-completed-casestudies' },
+      ].map(withIcon)
     ),
     'projects-documentation': () => sectionIndexHTML(
       [{ label: 'Home', route: 'home' }, { label: 'Projects', route: 'projects' }, { label: 'Documentation' }],
-      'Documentation', 'Working documentation created by Product and Engineering as projects happen &mdash; ADRs, design docs, RACI lists, requirements. These link to real SharePoint folders.',
+      'Documentation', "Working documentation created by Product and Engineering as projects happen &mdash; ADRs, design docs, RACI lists, requirements. Nothing's been added yet; use Contribute on each page to submit one.",
       [
-        { label: 'Architecture Decision Records (ADRs)', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgDEN3t3jFKSTZw5h9y_hpSYAaf9Roa3zxBUEj0CbRJ-MzA?e=6R6YOa' },
-        { label: 'Technical Design Docs', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgD0_TLoH7jTSKLDOIkDXXW_ASH8IunNJ1nePlF2gtrZQ8c?e=swTl4O' },
-        { label: 'Stakeholder & RACI Lists', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgDMUqsph3rOR4oH8argnMuAARNTq7jd1ObgwcfEpqvvrYA?e=XwI539' },
-        { label: 'Requirements Docs & Acceptance Criteria', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgDwn1bHxvzOQaseWSx7G6waAcc9pIS-5htqteA-63evpzM?e=rN7Srs' },
-      ].map((c) => withIcon(Object.assign({}, c, { external: true })))
+        { label: 'Architecture Decision Records (ADRs)', route: 'projects-documentation-adrs' },
+        { label: 'Technical Design Docs', route: 'projects-documentation-techdesign' },
+        { label: 'Stakeholder & RACI Lists', route: 'projects-documentation-raci' },
+        { label: 'Requirements Docs & Acceptance Criteria', route: 'projects-documentation-requirements' },
+      ].map(withIcon)
     ),
     'meetings-team': () => sectionIndexHTML(
       [{ label: 'Home', route: 'home' }, { label: 'Meetings', route: 'meetings' }, { label: 'Team Meetings' }],
-      'Team Meetings', "Engineering Standup and Product Team Sync notes moved to their respective Team Spaces. What's left here doesn't belong to a single team.",
+      'Team Meetings', "Engineering Standup and Product Team Sync notes moved to their respective Team Spaces. What's left here doesn't belong to a single team, and nothing's been added yet.",
       [
-        { label: 'Cross-Team (Product × Engineering) Sync Notes', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgBlS07acRA8Rr8WgIv42YIHAbDQcyIbyfS1ELvhLbdg0IU?e=jdeGaI' },
-        { label: 'Weekly Team Meeting Notes', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgD5UZ53icCgTa7K2X9vkfoIAYdNwAFzQ3ozU4Yhqh8RemY?e=IUrcAE' },
-      ].map((c) => withIcon(Object.assign({}, c, { external: true })))
+        { label: 'Cross-Team (Product × Engineering) Sync Notes', route: 'meetings-team-crossteam' },
+        { label: 'Weekly Team Meeting Notes', route: 'meetings-team-weekly' },
+      ].map(withIcon)
     ),
     'team-executive': () => sectionIndexHTML(
       [{ label: 'Home', route: 'home' }, { label: 'Team Spaces', route: 'team-spaces' }, { label: 'Executive Team' }],
       'Executive Team', 'A static site has no login, so anything here is visible to anyone with the link.',
       [
         withIcon({ label: 'Meeting Notes', route: 'team-executive-notes' }),
-        withIcon({ label: 'Shared Resources', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgArHEyMAsdiRZxVUxacmwWNAZnUOpeA_VEB0IAYOo0L7VA?e=ORBpC2', external: true }),
+        withIcon({ label: 'Shared Resources', route: 'team-executive-shared' }),
       ]
     ),
     'team-product': () => sectionIndexHTML(
@@ -291,7 +305,7 @@
       'Product Team', 'Documentation, meeting notes, decisions, and shared resources for the product team.',
       [
         withIcon({ label: 'Meeting Notes', route: 'team-product-notes' }),
-        withIcon({ label: 'Shared Resources', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgCVl4ZF4NDrRYpMpja4jJFKAYtF9ofzj7m4dS8sP-FUP4k?e=pjfigk', external: true }),
+        withIcon({ label: 'Shared Resources', route: 'team-product-shared' }),
       ]
     ),
     'team-engineering': () => sectionIndexHTML(
@@ -299,41 +313,41 @@
       'Engineering Team', 'Documentation, meeting notes, decisions, and shared resources for the engineering team.',
       [
         withIcon({ label: 'Meeting Notes', route: 'team-engineering-notes' }),
-        withIcon({ label: 'Shared Resources', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgBUmOpB5_QFTaOL7yPufTvBAQW-Xf4nRLJK8cXa_GvS4jw?e=vcvBgr', external: true }),
+        withIcon({ label: 'Shared Resources', route: 'team-engineering-shared' }),
       ]
     ),
     'team-executive-notes': () => sectionIndexHTML(
       [{ label: 'Home', route: 'home' }, { label: 'Team Spaces', route: 'team-spaces' }, { label: 'Executive Team', route: 'team-executive' }, { label: 'Meeting Notes' }],
-      'Executive Team Meeting Notes', 'These link to real SharePoint folders; add notes there directly, not on this site. Budget & Headcount Planning is shared to people in Canopi only (sign-in required) rather than anyone with the link.',
+      'Executive Team Meeting Notes', "Nothing's been added yet for any of these &mdash; open one and use Contribute to submit a document.",
       [
-        { label: 'All-Hands Meeting Notes', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgAzRgtyIcrKR5rZp7yDdLA1AdXS78fe6F-Rjk7KaxKlm5c?e=xEjm4O' },
-        { label: 'Budget & Headcount Planning', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgAvxiFdWDVyQZt9ecmKfAbQAQL05bhop47N13jEM45fYZ4?e=T3nsMk' },
-        { label: 'Quarterly Planning / OKR Review', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgB6Xb_uczHUT4RqobHFwCMgAejEVp6GuGE4X-z4g8w-rNc?e=76kKej' },
-        { label: 'Weekly Exec Sync', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgBT7dKh8W8PTZm4U1NHu_ikAcKRAGm9uY3aWje86l9mqjg?e=YXHVKU' },
-      ].map((c) => withIcon(Object.assign({}, c, { external: true })))
+        { label: 'All-Hands Meeting Notes', route: 'team-executive-notes-allhands' },
+        { label: 'Budget & Headcount Planning', route: 'team-executive-notes-budget' },
+        { label: 'Quarterly Planning / OKR Review', route: 'team-executive-notes-okr' },
+        { label: 'Weekly Exec Sync', route: 'team-executive-notes-execsync' },
+      ].map(withIcon)
     ),
     'team-product-notes': () => sectionIndexHTML(
       [{ label: 'Home', route: 'home' }, { label: 'Team Spaces', route: 'team-spaces' }, { label: 'Product Team', route: 'team-product' }, { label: 'Meeting Notes' }],
-      'Product Team Meeting Notes', 'These link to real SharePoint folders; add notes there directly, not on this site.',
+      'Product Team Meeting Notes', "Nothing's been added yet &mdash; open it and use Contribute to submit a document.",
       [
-        { label: 'Product Team Sync Notes', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgAx_z5m36YxSbgDRXQ-onYEAU7bf7q9ksvOIgss6A8esVo?e=nddx2J' },
-      ].map((c) => withIcon(Object.assign({}, c, { external: true })))
+        { label: 'Product Team Sync Notes', route: 'team-product-notes-sync' },
+      ].map(withIcon)
     ),
     'team-engineering-notes': () => sectionIndexHTML(
       [{ label: 'Home', route: 'home' }, { label: 'Team Spaces', route: 'team-spaces' }, { label: 'Engineering Team', route: 'team-engineering' }, { label: 'Meeting Notes' }],
-      'Engineering Team Meeting Notes', 'These link to real SharePoint folders; add notes there directly, not on this site.',
+      'Engineering Team Meeting Notes', "Nothing's been added yet &mdash; open it and use Contribute to submit a document.",
       [
-        { label: 'Engineering Standup / Sprint Planning & Retro Notes', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgDa5cTd-CFCQZDp-yKRcvnmAWhaIqn9Oen3oFTTR8hIi3g?e=geyfk2' },
-      ].map((c) => withIcon(Object.assign({}, c, { external: true })))
+        { label: 'Engineering Standup / Sprint Planning & Retro Notes', route: 'team-engineering-notes-standup' },
+      ].map(withIcon)
     ),
     'resources-shared': () => sectionIndexHTML(
       [{ label: 'Home', route: 'home' }, { label: 'Resources', route: 'resources' }, { label: 'Shared Documents' }],
       'Shared Documents', "Each team's Shared Resources folder, gathered here for quick access.",
       [
-        { label: 'Executive Team Shared Resources', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgArHEyMAsdiRZxVUxacmwWNAZnUOpeA_VEB0IAYOo0L7VA?e=ORBpC2' },
-        { label: 'Product Team Shared Resources', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgCVl4ZF4NDrRYpMpja4jJFKAYtF9ofzj7m4dS8sP-FUP4k?e=pjfigk' },
-        { label: 'Engineering Team Shared Resources', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgBUmOpB5_QFTaOL7yPufTvBAQW-Xf4nRLJK8cXa_GvS4jw?e=vcvBgr' },
-      ].map((c) => withIcon(Object.assign({}, c, { external: true })))
+        { label: 'Executive Team Shared Resources', route: 'team-executive-shared' },
+        { label: 'Product Team Shared Resources', route: 'team-product-shared' },
+        { label: 'Engineering Team Shared Resources', route: 'team-engineering-shared' },
+      ].map(withIcon)
     ),
   };
 
@@ -368,7 +382,7 @@
       [{ label: 'Home', route: 'home' }, { label: 'Resources', route: 'resources' }, { label: 'Investor Relations' }],
       'Investor Relations', 'Documents for current and prospective investors.',
       RESOURCE_INVESTOR.map((s) => ({ title: s.title, tag: s.tag, tagClass: s.tagClass, href: s.href, hrefExternal: !!s.href }))
-    ),
+    ) + contributeButtonHTML('Have another investor document to add?'),
     'meetings-1on1': () => docListHTML(
       [{ label: 'Home', route: 'home' }, { label: 'Meetings', route: 'meetings' }, { label: 'One-on-One Minutes' }],
       'One-on-One Minutes', 'The minutes template is downloadable here. Recurring notes link out to SharePoint folders shared only with the specific people involved &mdash; nobody else can open them.',
@@ -430,26 +444,26 @@
     { title: 'Team Spaces', meta: 'Home', route: 'team-spaces', keywords: 'executive product engineering' },
     { title: 'Active Projects', meta: 'Projects', route: 'projects-active', keywords: 'project tracker live excel status owner target date' },
     { title: 'Example Project: Repository Site Rollout', meta: 'Projects \u203a Active Projects', route: 'project-detail', keywords: 'example project repository site rollout charter roadmap risk' },
-    // projects > completed
-    { title: 'Project Archive', meta: 'Projects \u203a Completed Projects', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgC2_HhAyBdYQK4PzWe3d3nfAdN2EnTAyrq3hoH6V6jO5Uk?e=Z0p5Rr', external: true },
-    { title: 'Retrospectives / Post-Mortems', meta: 'Projects \u203a Completed Projects', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgCXMLOU9s6GTbwgoUJ-cxJkAUVEwWbLDKDhTLXS9b-UrCU?e=AAdOUo', external: true },
-    { title: 'Lessons-Learned Summaries', meta: 'Projects \u203a Completed Projects', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgDwlZ6QdhOgTJPtUoSL52n6AfEUE1nwzb-lmUA0YOUemas', external: true },
-    { title: 'Case Studies', meta: 'Projects \u203a Completed Projects', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgBIr6mmyZnRRLQh4sSyK5VSAYszSqSBv6IjhfLjqKUg0-Q', external: true },
-    // projects > documentation
-    { title: 'Architecture Decision Records (ADRs)', meta: 'Projects \u203a Documentation', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgDEN3t3jFKSTZw5h9y_hpSYAaf9Roa3zxBUEj0CbRJ-MzA?e=6R6YOa', external: true },
-    { title: 'Technical Design Docs', meta: 'Projects \u203a Documentation', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgD0_TLoH7jTSKLDOIkDXXW_ASH8IunNJ1nePlF2gtrZQ8c?e=swTl4O', external: true },
-    { title: 'Stakeholder & RACI Lists', meta: 'Projects \u203a Documentation', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgDMUqsph3rOR4oH8argnMuAARNTq7jd1ObgwcfEpqvvrYA?e=XwI539', external: true },
-    { title: 'Requirements Docs & Acceptance Criteria', meta: 'Projects \u203a Documentation', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgDwn1bHxvzOQaseWSx7G6waAcc9pIS-5htqteA-63evpzM?e=rN7Srs', external: true },
+    // projects > completed (no data yet — contribute pages)
+    { title: 'Project Archive', meta: 'Projects \u203a Completed Projects', route: 'projects-completed-archive' },
+    { title: 'Retrospectives / Post-Mortems', meta: 'Projects \u203a Completed Projects', route: 'projects-completed-retro' },
+    { title: 'Lessons-Learned Summaries', meta: 'Projects \u203a Completed Projects', route: 'projects-completed-lessons' },
+    { title: 'Case Studies', meta: 'Projects \u203a Completed Projects', route: 'projects-completed-casestudies' },
+    // projects > documentation (no data yet — contribute pages)
+    { title: 'Architecture Decision Records (ADRs)', meta: 'Projects \u203a Documentation', route: 'projects-documentation-adrs' },
+    { title: 'Technical Design Docs', meta: 'Projects \u203a Documentation', route: 'projects-documentation-techdesign' },
+    { title: 'Stakeholder & RACI Lists', meta: 'Projects \u203a Documentation', route: 'projects-documentation-raci' },
+    { title: 'Requirements Docs & Acceptance Criteria', meta: 'Projects \u203a Documentation', route: 'projects-documentation-requirements' },
     // meetings
-    { title: 'Cross-Team (Product \u00d7 Engineering) Sync Notes', meta: 'Meetings \u203a Team Meetings', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgBlS07acRA8Rr8WgIv42YIHAbDQcyIbyfS1ELvhLbdg0IU?e=jdeGaI', external: true },
-    { title: 'Weekly Team Meeting Notes', meta: 'Meetings \u203a Team Meetings', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgD5UZ53icCgTa7K2X9vkfoIAYdNwAFzQ3ozU4Yhqh8RemY?e=IUrcAE', external: true },
+    { title: 'Cross-Team (Product \u00d7 Engineering) Sync Notes', meta: 'Meetings \u203a Team Meetings', route: 'meetings-team-crossteam' },
+    { title: 'Weekly Team Meeting Notes', meta: 'Meetings \u203a Team Meetings', route: 'meetings-team-weekly' },
     { title: 'Manager 1:1 Minutes Template', meta: 'Meetings \u203a One-on-One Minutes', href: 'files/Standard_Minutes_Template.docx', download: true },
     { title: 'Recurring 1:1 Notes (per employee, private)', meta: 'Meetings \u203a One-on-One Minutes', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgDsXs_YK6f_ToTie2fvwi2EARVQepOayQPvOnJCrgcH2CA?e=dwskKI', external: true },
     // resources
     { title: 'Brand Assets', meta: 'Resources', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgC3JSp0HpBOSLVFFR4ujSnPAfpYlcfj-HFJf6T4Uf-6QeU?e=FIoTGv', external: true, keywords: 'logo design brand' },
-    { title: 'Executive Team Shared Resources', meta: 'Resources \u203a Shared Documents', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgArHEyMAsdiRZxVUxacmwWNAZnUOpeA_VEB0IAYOo0L7VA?e=ORBpC2', external: true },
-    { title: 'Product Team Shared Resources', meta: 'Resources \u203a Shared Documents', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgCVl4ZF4NDrRYpMpja4jJFKAYtF9ofzj7m4dS8sP-FUP4k?e=pjfigk', external: true },
-    { title: 'Engineering Team Shared Resources', meta: 'Resources \u203a Shared Documents', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgBUmOpB5_QFTaOL7yPufTvBAQW-Xf4nRLJK8cXa_GvS4jw?e=vcvBgr', external: true },
+    { title: 'Executive Team Shared Resources', meta: 'Resources \u203a Shared Documents', route: 'team-executive-shared' },
+    { title: 'Product Team Shared Resources', meta: 'Resources \u203a Shared Documents', route: 'team-product-shared' },
+    { title: 'Engineering Team Shared Resources', meta: 'Resources \u203a Shared Documents', route: 'team-engineering-shared' },
     // team spaces
     { title: 'Executive Team', meta: 'Team Spaces', route: 'team-executive' },
     { title: 'Product Team', meta: 'Team Spaces', route: 'team-product' },
@@ -457,12 +471,12 @@
     { title: 'Executive Team Meeting Notes', meta: 'Team Spaces \u203a Executive Team', route: 'team-executive-notes' },
     { title: 'Product Team Meeting Notes', meta: 'Team Spaces \u203a Product Team', route: 'team-product-notes' },
     { title: 'Engineering Team Meeting Notes', meta: 'Team Spaces \u203a Engineering Team', route: 'team-engineering-notes' },
-    { title: 'All-Hands Meeting Notes', meta: 'Team Spaces \u203a Executive Team', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgAzRgtyIcrKR5rZp7yDdLA1AdXS78fe6F-Rjk7KaxKlm5c?e=xEjm4O', external: true },
-    { title: 'Budget & Headcount Planning', meta: 'Team Spaces \u203a Executive Team', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgAvxiFdWDVyQZt9ecmKfAbQAQL05bhop47N13jEM45fYZ4?e=T3nsMk', external: true },
-    { title: 'Quarterly Planning / OKR Review', meta: 'Team Spaces \u203a Executive Team', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgB6Xb_uczHUT4RqobHFwCMgAejEVp6GuGE4X-z4g8w-rNc?e=76kKej', external: true },
-    { title: 'Weekly Exec Sync', meta: 'Team Spaces \u203a Executive Team', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgBT7dKh8W8PTZm4U1NHu_ikAcKRAGm9uY3aWje86l9mqjg?e=YXHVKU', external: true },
-    { title: 'Product Team Sync Notes', meta: 'Team Spaces \u203a Product Team', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgAx_z5m36YxSbgDRXQ-onYEAU7bf7q9ksvOIgss6A8esVo?e=nddx2J', external: true },
-    { title: 'Engineering Standup / Sprint Planning & Retro Notes', meta: 'Team Spaces \u203a Engineering Team', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgDa5cTd-CFCQZDp-yKRcvnmAWhaIqn9Oen3oFTTR8hIi3g?e=geyfk2', external: true },
+    { title: 'All-Hands Meeting Notes', meta: 'Team Spaces \u203a Executive Team', route: 'team-executive-notes-allhands' },
+    { title: 'Budget & Headcount Planning', meta: 'Team Spaces \u203a Executive Team', route: 'team-executive-notes-budget' },
+    { title: 'Quarterly Planning / OKR Review', meta: 'Team Spaces \u203a Executive Team', route: 'team-executive-notes-okr' },
+    { title: 'Weekly Exec Sync', meta: 'Team Spaces \u203a Executive Team', route: 'team-executive-notes-execsync' },
+    { title: 'Product Team Sync Notes', meta: 'Team Spaces \u203a Product Team', route: 'team-product-notes-sync' },
+    { title: 'Engineering Standup / Sprint Planning & Retro Notes', meta: 'Team Spaces \u203a Engineering Team', route: 'team-engineering-notes-standup' },
   ];
   SEARCH_INDEX.push(...EXTRA_SEARCH_ITEMS);
 
@@ -946,6 +960,36 @@
       </tbody></table>
     `,
   };
+
+  // ---------- empty "no data yet, contribute" pages ----------
+  // These used to link straight out to (empty) SharePoint folders. Now they're
+  // real internal pages with a Contribute CTA to the intake form, so the site
+  // never sends someone to a folder that turns out to have nothing in it.
+  const CONTRIBUTE_PAGES = [
+    { route: 'projects-completed-archive', title: 'Project Archive', crumb: [{ label: 'Home', route: 'home' }, { label: 'Projects', route: 'projects' }, { label: 'Completed Projects', route: 'projects-completed' }, { label: 'Project Archive' }] },
+    { route: 'projects-completed-retro', title: 'Retrospectives / Post-Mortems', crumb: [{ label: 'Home', route: 'home' }, { label: 'Projects', route: 'projects' }, { label: 'Completed Projects', route: 'projects-completed' }, { label: 'Retrospectives / Post-Mortems' }] },
+    { route: 'projects-completed-lessons', title: 'Lessons-Learned Summaries', crumb: [{ label: 'Home', route: 'home' }, { label: 'Projects', route: 'projects' }, { label: 'Completed Projects', route: 'projects-completed' }, { label: 'Lessons-Learned Summaries' }] },
+    { route: 'projects-completed-casestudies', title: 'Case Studies', crumb: [{ label: 'Home', route: 'home' }, { label: 'Projects', route: 'projects' }, { label: 'Completed Projects', route: 'projects-completed' }, { label: 'Case Studies' }] },
+    { route: 'projects-documentation-adrs', title: 'Architecture Decision Records (ADRs)', crumb: [{ label: 'Home', route: 'home' }, { label: 'Projects', route: 'projects' }, { label: 'Documentation', route: 'projects-documentation' }, { label: 'Architecture Decision Records (ADRs)' }] },
+    { route: 'projects-documentation-techdesign', title: 'Technical Design Docs', crumb: [{ label: 'Home', route: 'home' }, { label: 'Projects', route: 'projects' }, { label: 'Documentation', route: 'projects-documentation' }, { label: 'Technical Design Docs' }] },
+    { route: 'projects-documentation-raci', title: 'Stakeholder & RACI Lists', crumb: [{ label: 'Home', route: 'home' }, { label: 'Projects', route: 'projects' }, { label: 'Documentation', route: 'projects-documentation' }, { label: 'Stakeholder & RACI Lists' }] },
+    { route: 'projects-documentation-requirements', title: 'Requirements Docs & Acceptance Criteria', crumb: [{ label: 'Home', route: 'home' }, { label: 'Projects', route: 'projects' }, { label: 'Documentation', route: 'projects-documentation' }, { label: 'Requirements Docs & Acceptance Criteria' }] },
+    { route: 'meetings-team-crossteam', title: 'Cross-Team (Product × Engineering) Sync Notes', crumb: [{ label: 'Home', route: 'home' }, { label: 'Meetings', route: 'meetings' }, { label: 'Team Meetings', route: 'meetings-team' }, { label: 'Cross-Team Sync Notes' }] },
+    { route: 'meetings-team-weekly', title: 'Weekly Team Meeting Notes', crumb: [{ label: 'Home', route: 'home' }, { label: 'Meetings', route: 'meetings' }, { label: 'Team Meetings', route: 'meetings-team' }, { label: 'Weekly Team Meeting Notes' }] },
+    { route: 'team-executive-shared', title: 'Executive Team Shared Resources', crumb: [{ label: 'Home', route: 'home' }, { label: 'Team Spaces', route: 'team-spaces' }, { label: 'Executive Team', route: 'team-executive' }, { label: 'Shared Resources' }] },
+    { route: 'team-product-shared', title: 'Product Team Shared Resources', crumb: [{ label: 'Home', route: 'home' }, { label: 'Team Spaces', route: 'team-spaces' }, { label: 'Product Team', route: 'team-product' }, { label: 'Shared Resources' }] },
+    { route: 'team-engineering-shared', title: 'Engineering Team Shared Resources', crumb: [{ label: 'Home', route: 'home' }, { label: 'Team Spaces', route: 'team-spaces' }, { label: 'Engineering Team', route: 'team-engineering' }, { label: 'Shared Resources' }] },
+    { route: 'team-executive-notes-allhands', title: 'All-Hands Meeting Notes', crumb: [{ label: 'Home', route: 'home' }, { label: 'Team Spaces', route: 'team-spaces' }, { label: 'Executive Team', route: 'team-executive' }, { label: 'Meeting Notes', route: 'team-executive-notes' }, { label: 'All-Hands Meeting Notes' }] },
+    { route: 'team-executive-notes-budget', title: 'Budget & Headcount Planning', crumb: [{ label: 'Home', route: 'home' }, { label: 'Team Spaces', route: 'team-spaces' }, { label: 'Executive Team', route: 'team-executive' }, { label: 'Meeting Notes', route: 'team-executive-notes' }, { label: 'Budget & Headcount Planning' }] },
+    { route: 'team-executive-notes-okr', title: 'Quarterly Planning / OKR Review', crumb: [{ label: 'Home', route: 'home' }, { label: 'Team Spaces', route: 'team-spaces' }, { label: 'Executive Team', route: 'team-executive' }, { label: 'Meeting Notes', route: 'team-executive-notes' }, { label: 'Quarterly Planning / OKR Review' }] },
+    { route: 'team-executive-notes-execsync', title: 'Weekly Exec Sync', crumb: [{ label: 'Home', route: 'home' }, { label: 'Team Spaces', route: 'team-spaces' }, { label: 'Executive Team', route: 'team-executive' }, { label: 'Meeting Notes', route: 'team-executive-notes' }, { label: 'Weekly Exec Sync' }] },
+    { route: 'team-product-notes-sync', title: 'Product Team Sync Notes', crumb: [{ label: 'Home', route: 'home' }, { label: 'Team Spaces', route: 'team-spaces' }, { label: 'Product Team', route: 'team-product' }, { label: 'Meeting Notes', route: 'team-product-notes' }, { label: 'Product Team Sync Notes' }] },
+    { route: 'team-engineering-notes-standup', title: 'Engineering Standup / Sprint Planning & Retro Notes', crumb: [{ label: 'Home', route: 'home' }, { label: 'Team Spaces', route: 'team-spaces' }, { label: 'Engineering Team', route: 'team-engineering' }, { label: 'Meeting Notes', route: 'team-engineering-notes' }, { label: 'Engineering Standup / Sprint Planning & Retro Notes' }] },
+  ];
+  CONTRIBUTE_PAGES.forEach((p) => {
+    DETAIL_PAGES[p.route] = emptyStateHTML(p.crumb, p.title);
+    TITLES[p.route] = p.title;
+  });
 
   // ---------- home ----------
   function greetingFor(date) {
