@@ -105,6 +105,14 @@
   ];
   const PROJECTS_DOCUMENTATION_STAKEHOLDER = [
     { title: 'ABi SaaS Model', tag: 'Published v1', tagClass: 'tag-accent', href: 'https://canopi407-my.sharepoint.com/:x:/g/personal/dixon_canopi_work/IQDPZ4-NrlqLTZaLX3fN-XAbAaIcBJMuTmre9R8yEPaCdTk?e=XG1WsG' },
+    { title: '2025 18-Month Consolidated Budget Report', tag: 'Published v1', tagClass: 'tag-accent', href: 'https://canopi407-my.sharepoint.com/:w:/g/personal/angela_canopi_work/IQBMJtIawrfPWVjucXylT8d9AZ468eI6a6mGjnvWDPDzchA?e=QovZGt' },
+    { title: '2025 Business and Pricing Model', tag: 'Published v1', tagClass: 'tag-accent', href: 'https://canopi407-my.sharepoint.com/:w:/g/personal/angela_canopi_work/IQAQXOtkXHAbWteHzvTmtZoMAdHSBO-a0Ctef26d77gYPlQ?e=P0qTk4' },
+  ];
+  const PROJECTS_DOCUMENTATION_TECHDESIGN = [
+    { title: 'Data Room Requirements Research', tag: 'Published v1', tagClass: 'tag-accent', href: 'https://canopi407-my.sharepoint.com/:w:/g/personal/angela_canopi_work/IQDxnKiddcNBVr_Y2EXbL2GAAUL5WDYW4C1ZUuWi79DKcN0?e=bWZJEg' },
+  ];
+  const TEAM_ENGINEERING_SHARED = [
+    { title: 'Credential File References', tag: 'Published v1', tagClass: 'tag-accent', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgD5CmEP_GVdRrzjBN3Y-YuHAdEt5u5iyHiVZqjxOAtBwFs?e=D3Vhzs' },
   ];
   const PROJECTS_COMPLETED_MARKET_RESEARCH = [
     { title: 'Market Validation Research', tag: 'Published v1', tagClass: 'tag-accent', href: 'https://canopi407-my.sharepoint.com/:w:/r/personal/dixon_canopi_work/Documents/Dixon%20files%20to%20import/Canopi_Market_Validation_Research.docx?d=w8715d85a360748eeb5b1018850dbdd8c&csf=1&web=1&e=e8pGFS' },
@@ -205,6 +213,8 @@
     'meetings-1on1-recurring': 'Recurring 1:1 Notes',
     'meetings-team-weekly': 'Weekly Team Meeting Notes',
     'projects-completed-archive': 'Project Archive',
+    'projects-documentation-techdesign': 'Technical Design Docs',
+    'team-engineering-shared': 'Engineering Team Shared Resources',
   };
 
   // ---------- helpers ----------
@@ -475,6 +485,16 @@
       'Project Archive', 'Archived sales and pitch decks.',
       PROJECTS_COMPLETED_ARCHIVE.map((s) => ({ title: s.title, tag: s.tag, tagClass: s.tagClass, href: s.href, hrefExternal: !!s.href }))
     ) + contributeButtonHTML('Have another document to add?'),
+    'projects-documentation-techdesign': () => docListHTML(
+      [{ label: 'Home', route: 'home' }, { label: 'Projects', route: 'projects' }, { label: 'Documentation', route: 'projects-documentation' }, { label: 'Technical Design Docs' }],
+      'Technical Design Docs', 'Technical design and research docs for Canopi projects.',
+      PROJECTS_DOCUMENTATION_TECHDESIGN.map((s) => ({ title: s.title, tag: s.tag, tagClass: s.tagClass, href: s.href, hrefExternal: !!s.href }))
+    ) + contributeButtonHTML('Have another document to add?'),
+    'team-engineering-shared': () => docListHTML(
+      [{ label: 'Home', route: 'home' }, { label: 'Team Spaces', route: 'team-spaces' }, { label: 'Engineering Team', route: 'team-engineering' }, { label: 'Shared Resources' }],
+      'Engineering Team Shared Resources', 'Shared documents for the engineering team.',
+      TEAM_ENGINEERING_SHARED.map((s) => ({ title: s.title, tag: s.tag, tagClass: s.tagClass, href: s.href, hrefExternal: !!s.href }))
+    ) + contributeButtonHTML('Have another document to add?'),
     'meetings-1on1': () =>
       crumb([{ label: 'Home', route: 'home' }, { label: 'Meetings', route: 'meetings' }, { label: 'One-on-One Minutes' }]) +
       '<h1>One-on-One Minutes</h1>' +
@@ -532,6 +552,8 @@
   indexFrom(PROJECTS_COMPLETED_MARKET_RESEARCH, 'Projects \u203a Completed Projects \u203a Market Research', (s) => s.href ? { href: s.href, external: true } : null);
   indexFrom(MEETINGS_TEAM_WEEKLY, 'Meetings \u203a Team Meetings \u203a Weekly Team Meeting Notes', (s) => s.href ? { href: s.href, external: true } : null);
   indexFrom(PROJECTS_COMPLETED_ARCHIVE, 'Projects \u203a Completed Projects \u203a Project Archive', (s) => s.href ? { href: s.href, external: true } : null);
+  indexFrom(PROJECTS_DOCUMENTATION_TECHDESIGN, 'Projects \u203a Documentation \u203a Technical Design Docs', (s) => s.href ? { href: s.href, external: true } : null);
+  indexFrom(TEAM_ENGINEERING_SHARED, 'Team Spaces \u203a Engineering Team \u203a Shared Resources', (s) => s.href ? { href: s.href, external: true } : null);
 
   const EXTRA_SEARCH_ITEMS = [
     // section landing pages
@@ -1069,11 +1091,9 @@
   const CONTRIBUTE_PAGES = [
     { route: 'projects-completed-retro', title: 'Retrospectives / Post-Mortems', crumb: [{ label: 'Home', route: 'home' }, { label: 'Projects', route: 'projects' }, { label: 'Completed Projects', route: 'projects-completed' }, { label: 'Retrospectives / Post-Mortems' }] },
     { route: 'projects-completed-casestudies', title: 'Case Studies', crumb: [{ label: 'Home', route: 'home' }, { label: 'Projects', route: 'projects' }, { label: 'Completed Projects', route: 'projects-completed' }, { label: 'Case Studies' }] },
-    { route: 'projects-documentation-techdesign', title: 'Technical Design Docs', crumb: [{ label: 'Home', route: 'home' }, { label: 'Projects', route: 'projects' }, { label: 'Documentation', route: 'projects-documentation' }, { label: 'Technical Design Docs' }] },
     { route: 'projects-documentation-requirements', title: 'Requirements Docs & Acceptance Criteria', crumb: [{ label: 'Home', route: 'home' }, { label: 'Projects', route: 'projects' }, { label: 'Documentation', route: 'projects-documentation' }, { label: 'Requirements Docs & Acceptance Criteria' }] },
     { route: 'meetings-team-crossteam', title: 'Cross-Team (Product × Engineering) Sync Notes', crumb: [{ label: 'Home', route: 'home' }, { label: 'Meetings', route: 'meetings' }, { label: 'Team Meetings', route: 'meetings-team' }, { label: 'Cross-Team Sync Notes' }] },
     { route: 'team-executive-shared', title: 'Executive Team Shared Resources', crumb: [{ label: 'Home', route: 'home' }, { label: 'Team Spaces', route: 'team-spaces' }, { label: 'Executive Team', route: 'team-executive' }, { label: 'Shared Resources' }] },
-    { route: 'team-engineering-shared', title: 'Engineering Team Shared Resources', crumb: [{ label: 'Home', route: 'home' }, { label: 'Team Spaces', route: 'team-spaces' }, { label: 'Engineering Team', route: 'team-engineering' }, { label: 'Shared Resources' }] },
     { route: 'team-executive-notes-allhands', title: 'All-Hands Meeting Notes', crumb: [{ label: 'Home', route: 'home' }, { label: 'Team Spaces', route: 'team-spaces' }, { label: 'Executive Team', route: 'team-executive' }, { label: 'Meeting Notes', route: 'team-executive-notes' }, { label: 'All-Hands Meeting Notes' }] },
     { route: 'team-executive-notes-budget', title: 'Budget & Headcount Planning', crumb: [{ label: 'Home', route: 'home' }, { label: 'Team Spaces', route: 'team-spaces' }, { label: 'Executive Team', route: 'team-executive' }, { label: 'Meeting Notes', route: 'team-executive-notes' }, { label: 'Budget & Headcount Planning' }] },
     { route: 'team-executive-notes-okr', title: 'Quarterly Planning / OKR Review', crumb: [{ label: 'Home', route: 'home' }, { label: 'Team Spaces', route: 'team-spaces' }, { label: 'Executive Team', route: 'team-executive' }, { label: 'Meeting Notes', route: 'team-executive-notes' }, { label: 'Quarterly Planning / OKR Review' }] },
@@ -1114,11 +1134,11 @@
 
   function homeHTML() {
     const recentUpdates = [
+      { title: "Stakeholder's Records", meta: 'Today', route: 'projects-documentation-raci' },
+      { title: 'Engineering Team Shared Resources', meta: 'Today', route: 'team-engineering-shared' },
+      { title: 'Technical Design Docs', meta: 'Today', route: 'projects-documentation-techdesign' },
       { title: 'Project Archive', meta: 'Today', route: 'projects-completed-archive' },
       { title: 'Templates', meta: 'Today', route: 'resources-templates' },
-      { title: 'Weekly Team Meeting Notes', meta: 'Today', route: 'meetings-team-weekly' },
-      { title: 'Recurring 1:1 Notes', meta: 'Today', route: 'meetings-1on1-recurring' },
-      { title: 'Investor Relations', meta: 'Today', route: 'resources-investor' },
     ];
     const updateRows = recentUpdates.map((u, i) =>
       '<a href="#' + u.route + '" class="update-row' + (i === 0 ? ' featured' : '') + '">' +
