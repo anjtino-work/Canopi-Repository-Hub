@@ -90,6 +90,11 @@
     { title: 'Investor Roadmap Q3 2026', tag: 'Published v1', tagClass: 'tag-accent', href: 'https://canopi407-my.sharepoint.com/:w:/g/personal/dixon_canopi_work/IQCOvEiEus2kT5An0WM-gSUaAeeTwffx2J6tMD3JZEMxpbE?e=yZLQ9r' },
   ];
 
+  const TEAM_PRODUCT_SHARED = [
+    { title: 'Canopi Roadmap Q3 V1', tag: 'Published v1', tagClass: 'tag-accent', href: 'https://canopi407-my.sharepoint.com/:w:/g/personal/dixon_canopi_work/IQDn7t6ygqU9QYhvoBi8MsIbAf_ymwzGpX6DN7luR7-IUwk?e=KC5XGx' },
+    { title: 'Canopi Roadmap Q3 V2', tag: 'Published v1', tagClass: 'tag-accent', href: 'https://canopi407-my.sharepoint.com/:w:/g/personal/dixon_canopi_work/IQDwkMJPmZf2Tav1dEXnwygfAZ2fcqGQUcF_HYYi0nNUAW4?e=Raj7c0' },
+  ];
+
   const ICON_DEFAULT = 'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6';
   const ICON_USERS = 'M16 3.13a4 4 0 0 1 0 7.75 M13 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2 M22.5 21v-2a4 4 0 0 0-3-3.87 M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8';
   const ICON_CALENDAR = 'M8 2v4 M16 2v4 M3 10h18 M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z';
@@ -157,6 +162,7 @@
     'resources-investor': 'Investor Relations',
     'team-executive': 'Executive Team', 'team-product': 'Product Team', 'team-engineering': 'Engineering Team',
     'team-executive-notes': 'Executive Team Meeting Notes', 'team-product-notes': 'Product Team Meeting Notes', 'team-engineering-notes': 'Engineering Team Meeting Notes',
+    'team-product-shared': 'Product Team Shared Resources',
   };
 
   // ---------- helpers ----------
@@ -384,6 +390,11 @@
       'Investor Relations', 'Documents for current and prospective investors.',
       RESOURCE_INVESTOR.map((s) => ({ title: s.title, tag: s.tag, tagClass: s.tagClass, href: s.href, hrefExternal: !!s.href }))
     ) + contributeButtonHTML('Have another investor document to add?'),
+    'team-product-shared': () => docListHTML(
+      [{ label: 'Home', route: 'home' }, { label: 'Team Spaces', route: 'team-spaces' }, { label: 'Product Team', route: 'team-product' }, { label: 'Shared Resources' }],
+      'Product Team Shared Resources', 'Shared documents for the product team.',
+      TEAM_PRODUCT_SHARED.map((s) => ({ title: s.title, tag: s.tag, tagClass: s.tagClass, href: s.href, hrefExternal: !!s.href }))
+    ) + contributeButtonHTML('Have another document to add?'),
     'meetings-1on1': () => docListHTML(
       [{ label: 'Home', route: 'home' }, { label: 'Meetings', route: 'meetings' }, { label: 'One-on-One Minutes' }],
       'One-on-One Minutes', 'The minutes template is downloadable here. Recurring notes link out to SharePoint folders shared only with the specific people involved &mdash; nobody else can open them.',
@@ -435,6 +446,7 @@
   indexFrom(RESOURCE_TEMPLATES, 'Resources \u203a Templates', (s) => ({ href: s.href, download: true }));
   indexFrom(RESOURCE_FORMS, 'Resources \u203a Forms', (s) => s.href ? { href: s.href, external: true } : null);
   indexFrom(RESOURCE_INVESTOR, 'Resources \u203a Investor Relations', (s) => s.href ? { href: s.href, external: true } : null);
+  indexFrom(TEAM_PRODUCT_SHARED, 'Team Spaces \u203a Product Team \u203a Shared Resources', (s) => s.href ? { href: s.href, external: true } : null);
 
   const EXTRA_SEARCH_ITEMS = [
     // section landing pages
@@ -978,7 +990,6 @@
     { route: 'meetings-team-crossteam', title: 'Cross-Team (Product × Engineering) Sync Notes', crumb: [{ label: 'Home', route: 'home' }, { label: 'Meetings', route: 'meetings' }, { label: 'Team Meetings', route: 'meetings-team' }, { label: 'Cross-Team Sync Notes' }] },
     { route: 'meetings-team-weekly', title: 'Weekly Team Meeting Notes', crumb: [{ label: 'Home', route: 'home' }, { label: 'Meetings', route: 'meetings' }, { label: 'Team Meetings', route: 'meetings-team' }, { label: 'Weekly Team Meeting Notes' }] },
     { route: 'team-executive-shared', title: 'Executive Team Shared Resources', crumb: [{ label: 'Home', route: 'home' }, { label: 'Team Spaces', route: 'team-spaces' }, { label: 'Executive Team', route: 'team-executive' }, { label: 'Shared Resources' }] },
-    { route: 'team-product-shared', title: 'Product Team Shared Resources', crumb: [{ label: 'Home', route: 'home' }, { label: 'Team Spaces', route: 'team-spaces' }, { label: 'Product Team', route: 'team-product' }, { label: 'Shared Resources' }] },
     { route: 'team-engineering-shared', title: 'Engineering Team Shared Resources', crumb: [{ label: 'Home', route: 'home' }, { label: 'Team Spaces', route: 'team-spaces' }, { label: 'Engineering Team', route: 'team-engineering' }, { label: 'Shared Resources' }] },
     { route: 'team-executive-notes-allhands', title: 'All-Hands Meeting Notes', crumb: [{ label: 'Home', route: 'home' }, { label: 'Team Spaces', route: 'team-spaces' }, { label: 'Executive Team', route: 'team-executive' }, { label: 'Meeting Notes', route: 'team-executive-notes' }, { label: 'All-Hands Meeting Notes' }] },
     { route: 'team-executive-notes-budget', title: 'Budget & Headcount Planning', crumb: [{ label: 'Home', route: 'home' }, { label: 'Team Spaces', route: 'team-spaces' }, { label: 'Executive Team', route: 'team-executive' }, { label: 'Meeting Notes', route: 'team-executive-notes' }, { label: 'Budget & Headcount Planning' }] },
