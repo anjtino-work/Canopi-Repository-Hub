@@ -116,6 +116,8 @@
     { title: 'Sales Deck 2025 Q4', tag: 'Published v1', tagClass: 'tag-accent', href: 'https://canopi407-my.sharepoint.com/:p:/g/personal/angela_canopi_work/IQCKQX8fw_jIWyxUHQ8hV9UXAWgVurvgJ9SVtT7uZYgJS5A?e=Sen75U' },
     { title: 'Pitch Deck 2025 Q4 V1', tag: 'Published v1', tagClass: 'tag-accent', href: 'https://canopi407-my.sharepoint.com/:p:/g/personal/angela_canopi_work/IQAQvAfx5-ztWIUQshIr7VNcAT91emyjVM6tyqnfN4N98Qo?e=IefG7a' },
     { title: 'Pitch Deck 2025 Q4 V2', tag: 'Published v1', tagClass: 'tag-accent', href: 'https://canopi407-my.sharepoint.com/:p:/g/personal/angela_canopi_work/IQAz2Wip_-g2X_G9duS9O6hpATD_XASoAPd-aKFVe3bpAqo?e=z649d6' },
+    { title: 'Pitch Deck 2026 Q2 V1', tag: 'Published v1', tagClass: 'tag-accent', href: 'https://canopi407-my.sharepoint.com/:p:/g/personal/angela_canopi_work/IQALufnsL2qDXp9pXMZzeFj0AUUH8MtU3PnFdFstjChIofI?e=51JWbH' },
+    { title: 'Pitch Deck 2026 Q2 V2', tag: 'Published v1', tagClass: 'tag-accent', href: 'https://canopi407-my.sharepoint.com/:p:/g/personal/angela_canopi_work/IQCRCy5Td0w7W8IJTJbInC1cAWGpmZ5I1J7C3U9_x9xkz3A?e=x7wo4p' },
   ];
 
   // Recurring 1:1 pairs — [display label (plain text), route slug]
