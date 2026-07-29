@@ -85,6 +85,11 @@
     { title: 'PTO request form', tag: 'Coming Soon', tagClass: 'tag-outline' },
   ];
 
+  const RESOURCE_INVESTOR = [
+    { title: 'Investor Question Bank', tag: 'Published v1', tagClass: 'tag-accent', href: 'https://canopi407-my.sharepoint.com/:w:/g/personal/dixon_canopi_work/IQBk3Rj6zB4qTra5ZO8RW6btAVmqgr_4Qg9NT_mwzTojYEg?e=XdPfdL' },
+    { title: 'Investor Roadmap Q3 2026', tag: 'Published v1', tagClass: 'tag-accent', href: 'https://canopi407-my.sharepoint.com/:w:/g/personal/dixon_canopi_work/IQCOvEiEus2kT5An0WM-gSUaAeeTwffx2J6tMD3JZEMxpbE?e=yZLQ9r' },
+  ];
+
   const ICON_DEFAULT = 'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6';
   const ICON_USERS = 'M16 3.13a4 4 0 0 1 0 7.75 M13 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2 M22.5 21v-2a4 4 0 0 0-3-3.87 M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8';
   const ICON_CALENDAR = 'M8 2v4 M16 2v4 M3 10h18 M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z';
@@ -99,6 +104,7 @@
     'Forms': 'M9 12h6 M9 16h6 M9 8h1 M8 4h8a1 1 0 0 1 1 1v1H7V5a1 1 0 0 1 1-1z M6 4h12a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z',
     'Brand Assets': 'M3 3h18v18H3z M8.5 10a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z M21 15l-5-5L5 21',
     'Shared Documents': 'M10 13a5 5 0 0 0 7.54.54l1.72-1.72a5 5 0 0 0-7.07-7.07l-.94.94 M14 11a5 5 0 0 0-7.54-.54L4.74 12.18a5 5 0 0 0 7.07 7.07l.94-.94',
+    'Investor Relations': 'M23 6l-9.5 9.5-5-5L1 18 M17 6h6v6',
     'Executive Team': 'M20 7h-3V5a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z M8 7V5h8v2',
     'Product Team': 'M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z M3.27 6.96 12 12l8.73-5.04 M12 22.08V12',
     'Engineering Team': 'm18 16 4-4-4-4 M6 8l-4 4 4 4 M14.5 4l-5 16',
@@ -148,6 +154,7 @@
     'projects-completed': 'Completed Projects', 'projects-templates': 'Project Templates', 'projects-documentation': 'Documentation',
     'meetings-team': 'Team Meetings', 'meetings-1on1': 'One-on-One Minutes',
     'resources-templates': 'Templates', 'resources-forms': 'Forms', 'resources-shared': 'Shared Documents',
+    'resources-investor': 'Investor Relations',
     'team-executive': 'Executive Team', 'team-product': 'Product Team', 'team-engineering': 'Engineering Team',
     'team-executive-notes': 'Executive Team Meeting Notes', 'team-product-notes': 'Product Team Meeting Notes', 'team-engineering-notes': 'Engineering Team Meeting Notes',
   };
@@ -225,12 +232,13 @@
     ),
     resources: () => sectionIndexHTML(
       [{ label: 'Home', route: 'home' }, { label: 'Resources' }],
-      'Resources', 'Templates, forms, brand assets, and shared documents.',
+      'Resources', 'Templates, forms, brand assets, shared documents, and investor relations.',
       [
         withIcon({ label: 'Templates', route: 'resources-templates' }),
         withIcon({ label: 'Forms', route: 'resources-forms' }),
         withIcon({ label: 'Brand Assets', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgC3JSp0HpBOSLVFFR4ujSnPAfpYlcfj-HFJf6T4Uf-6QeU?e=FIoTGv', external: true }),
         withIcon({ label: 'Shared Documents', route: 'resources-shared' }),
+        withIcon({ label: 'Investor Relations', route: 'resources-investor' }),
       ]
     ),
     'team-spaces': () => sectionIndexHTML(
@@ -356,6 +364,11 @@
       'Forms', 'Fillable forms for common requests.',
       RESOURCE_FORMS.map((s) => ({ title: s.title, tag: s.tag, tagClass: s.tagClass, href: s.href, hrefExternal: !!s.href }))
     ),
+    'resources-investor': () => docListHTML(
+      [{ label: 'Home', route: 'home' }, { label: 'Resources', route: 'resources' }, { label: 'Investor Relations' }],
+      'Investor Relations', 'Documents for current and prospective investors.',
+      RESOURCE_INVESTOR.map((s) => ({ title: s.title, tag: s.tag, tagClass: s.tagClass, href: s.href, hrefExternal: !!s.href }))
+    ),
     'meetings-1on1': () => docListHTML(
       [{ label: 'Home', route: 'home' }, { label: 'Meetings', route: 'meetings' }, { label: 'One-on-One Minutes' }],
       'One-on-One Minutes', 'The minutes template is downloadable here. Recurring notes link out to SharePoint folders shared only with the specific people involved &mdash; nobody else can open them.',
@@ -406,6 +419,7 @@
   indexFrom(PROJECT_TEMPLATES, 'Projects \u203a Templates', (s) => ({ href: s.href, download: true }));
   indexFrom(RESOURCE_TEMPLATES, 'Resources \u203a Templates', (s) => ({ href: s.href, download: true }));
   indexFrom(RESOURCE_FORMS, 'Resources \u203a Forms', (s) => s.href ? { href: s.href, external: true } : null);
+  indexFrom(RESOURCE_INVESTOR, 'Resources \u203a Investor Relations', (s) => s.href ? { href: s.href, external: true } : null);
 
   const EXTRA_SEARCH_ITEMS = [
     // section landing pages
