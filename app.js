@@ -108,6 +108,9 @@
   const PROJECTS_COMPLETED_MARKET_RESEARCH = [
     { title: 'Market Validation Research', tag: 'Published v1', tagClass: 'tag-accent', href: 'https://canopi407-my.sharepoint.com/:w:/r/personal/dixon_canopi_work/Documents/Dixon%20files%20to%20import/Canopi_Market_Validation_Research.docx?d=w8715d85a360748eeb5b1018850dbdd8c&csf=1&web=1&e=e8pGFS' },
   ];
+  const MEETINGS_TEAM_WEEKLY = [
+    { title: '26-07-23 Weekly Team Meeting Minutes', tag: 'Published v1', tagClass: 'tag-accent', href: 'https://canopi407-my.sharepoint.com/:w:/g/personal/angela_canopi_work/IQBvGPkIfOIcTLvjdvtR24eqAfFmDPjsqMTUjwMnEVVSh-A?e=PIeAEs' },
+  ];
 
   // Recurring 1:1 pairs — [display label (plain text), route slug]
   const RECURRING_1ON1_PAIRS = [
@@ -192,6 +195,7 @@
     'projects-documentation-adrs': 'Architecture Decision Records (ADRs)',
     'projects-documentation-raci': "Stakeholder's Records",
     'meetings-1on1-recurring': 'Recurring 1:1 Notes',
+    'meetings-team-weekly': 'Weekly Team Meeting Notes',
   };
 
   // ---------- helpers ----------
@@ -452,6 +456,11 @@
       "Stakeholder's Records", 'Stakeholder records for Canopi projects.',
       PROJECTS_DOCUMENTATION_STAKEHOLDER.map((s) => ({ title: s.title, tag: s.tag, tagClass: s.tagClass, href: s.href, hrefExternal: !!s.href }))
     ) + contributeButtonHTML('Have another document to add?'),
+    'meetings-team-weekly': () => docListHTML(
+      [{ label: 'Home', route: 'home' }, { label: 'Meetings', route: 'meetings' }, { label: 'Team Meetings', route: 'meetings-team' }, { label: 'Weekly Team Meeting Notes' }],
+      'Weekly Team Meeting Notes', 'Minutes from the weekly team meeting.',
+      MEETINGS_TEAM_WEEKLY.map((s) => ({ title: s.title, tag: s.tag, tagClass: s.tagClass, href: s.href, hrefExternal: !!s.href }))
+    ) + contributeButtonHTML('Have another document to add?'),
     'meetings-1on1': () =>
       crumb([{ label: 'Home', route: 'home' }, { label: 'Meetings', route: 'meetings' }, { label: 'One-on-One Minutes' }]) +
       '<h1>One-on-One Minutes</h1>' +
@@ -507,6 +516,7 @@
   indexFrom(PROJECTS_DOCUMENTATION_ADRS, 'Projects \u203a Documentation \u203a ADRs', (s) => s.href ? { href: s.href, external: true } : null);
   indexFrom(PROJECTS_DOCUMENTATION_STAKEHOLDER, 'Projects \u203a Documentation \u203a Stakeholder\u2019s Records', (s) => s.href ? { href: s.href, external: true } : null);
   indexFrom(PROJECTS_COMPLETED_MARKET_RESEARCH, 'Projects \u203a Completed Projects \u203a Market Research', (s) => s.href ? { href: s.href, external: true } : null);
+  indexFrom(MEETINGS_TEAM_WEEKLY, 'Meetings \u203a Team Meetings \u203a Weekly Team Meeting Notes', (s) => s.href ? { href: s.href, external: true } : null);
 
   const EXTRA_SEARCH_ITEMS = [
     // section landing pages
@@ -1048,7 +1058,6 @@
     { route: 'projects-documentation-techdesign', title: 'Technical Design Docs', crumb: [{ label: 'Home', route: 'home' }, { label: 'Projects', route: 'projects' }, { label: 'Documentation', route: 'projects-documentation' }, { label: 'Technical Design Docs' }] },
     { route: 'projects-documentation-requirements', title: 'Requirements Docs & Acceptance Criteria', crumb: [{ label: 'Home', route: 'home' }, { label: 'Projects', route: 'projects' }, { label: 'Documentation', route: 'projects-documentation' }, { label: 'Requirements Docs & Acceptance Criteria' }] },
     { route: 'meetings-team-crossteam', title: 'Cross-Team (Product × Engineering) Sync Notes', crumb: [{ label: 'Home', route: 'home' }, { label: 'Meetings', route: 'meetings' }, { label: 'Team Meetings', route: 'meetings-team' }, { label: 'Cross-Team Sync Notes' }] },
-    { route: 'meetings-team-weekly', title: 'Weekly Team Meeting Notes', crumb: [{ label: 'Home', route: 'home' }, { label: 'Meetings', route: 'meetings' }, { label: 'Team Meetings', route: 'meetings-team' }, { label: 'Weekly Team Meeting Notes' }] },
     { route: 'team-executive-shared', title: 'Executive Team Shared Resources', crumb: [{ label: 'Home', route: 'home' }, { label: 'Team Spaces', route: 'team-spaces' }, { label: 'Executive Team', route: 'team-executive' }, { label: 'Shared Resources' }] },
     { route: 'team-engineering-shared', title: 'Engineering Team Shared Resources', crumb: [{ label: 'Home', route: 'home' }, { label: 'Team Spaces', route: 'team-spaces' }, { label: 'Engineering Team', route: 'team-engineering' }, { label: 'Shared Resources' }] },
     { route: 'team-executive-notes-allhands', title: 'All-Hands Meeting Notes', crumb: [{ label: 'Home', route: 'home' }, { label: 'Team Spaces', route: 'team-spaces' }, { label: 'Executive Team', route: 'team-executive' }, { label: 'Meeting Notes', route: 'team-executive-notes' }, { label: 'All-Hands Meeting Notes' }] },
