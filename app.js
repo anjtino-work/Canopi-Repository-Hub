@@ -452,14 +452,13 @@
       "Stakeholder's Records", 'Stakeholder records for Canopi projects.',
       PROJECTS_DOCUMENTATION_STAKEHOLDER.map((s) => ({ title: s.title, tag: s.tag, tagClass: s.tagClass, href: s.href, hrefExternal: !!s.href }))
     ) + contributeButtonHTML('Have another document to add?'),
-    'meetings-1on1': () => docListHTML(
-      [{ label: 'Home', route: 'home' }, { label: 'Meetings', route: 'meetings' }, { label: 'One-on-One Minutes' }],
-      'One-on-One Minutes', 'The minutes template is downloadable here. Recurring notes are organized by pair, private to the two people involved.',
-      [
-        { title: 'Manager 1:1 Minutes Template', tag: 'Published v1', tagClass: 'tag-accent', href: 'files/Standard_Minutes_Template.docx', hrefDownload: true },
-        { title: 'Recurring 1:1 Notes (per employee, private)', route: 'meetings-1on1-recurring' },
-      ]
-    ),
+    'meetings-1on1': () =>
+      crumb([{ label: 'Home', route: 'home' }, { label: 'Meetings', route: 'meetings' }, { label: 'One-on-One Minutes' }]) +
+      '<h1>One-on-One Minutes</h1>' +
+      '<p class="section-lead">The minutes template is downloadable here. Recurring notes are organized by pair, private to the two people involved.</p>' +
+      '<div class="doclist">' + docRowHTML({ title: '1:1 Minutes Template', tag: 'Published v1', tagClass: 'tag-accent', href: 'files/Standard_Minutes_Template.docx', hrefDownload: true }) + '</div>' +
+      '<p class="eyebrow" style="margin-top:var(--space-6)">Recurring notes</p>' +
+      '<div class="section-cards">' + sectionCardHTML({ label: 'Recurring 1:1 Notes', route: 'meetings-1on1-recurring', icon: ICON_USERS }) + '</div>',
     'kb-sops': () => docListHTML(
       [{ label: 'Home', route: 'home' }, { label: 'Knowledge Base', route: 'kb' }, { label: 'SOPs' }],
       'SOPs', 'Standard operating procedures. Each one carries a version number and a status badge.',
@@ -531,7 +530,7 @@
     // meetings
     { title: 'Cross-Team (Product \u00d7 Engineering) Sync Notes', meta: 'Meetings \u203a Team Meetings', route: 'meetings-team-crossteam' },
     { title: 'Weekly Team Meeting Notes', meta: 'Meetings \u203a Team Meetings', route: 'meetings-team-weekly' },
-    { title: 'Manager 1:1 Minutes Template', meta: 'Meetings \u203a One-on-One Minutes', href: 'files/Standard_Minutes_Template.docx', download: true },
+    { title: '1:1 Minutes Template', meta: 'Meetings \u203a One-on-One Minutes', href: 'files/Standard_Minutes_Template.docx', download: true },
     { title: 'Recurring 1:1 Notes', meta: 'Meetings \u203a One-on-One Minutes', route: 'meetings-1on1-recurring' },
     // resources
     { title: 'Brand Assets', meta: 'Resources', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgC3JSp0HpBOSLVFFR4ujSnPAfpYlcfj-HFJf6T4Uf-6QeU?e=FIoTGv', external: true, keywords: 'logo design brand' },
