@@ -112,6 +112,11 @@
   const MEETINGS_TEAM_WEEKLY = [
     { title: '26-07-23 Weekly Team Meeting Minutes', tag: 'Published v1', tagClass: 'tag-accent', href: 'https://canopi407-my.sharepoint.com/:w:/g/personal/angela_canopi_work/IQBvGPkIfOIcTLvjdvtR24eqAfFmDPjsqMTUjwMnEVVSh-A?e=PIeAEs' },
   ];
+  const PROJECTS_COMPLETED_ARCHIVE = [
+    { title: 'Sales Deck 2025 Q4', tag: 'Published v1', tagClass: 'tag-accent', href: 'https://canopi407-my.sharepoint.com/:p:/g/personal/angela_canopi_work/IQCKQX8fw_jIWyxUHQ8hV9UXAWgVurvgJ9SVtT7uZYgJS5A?e=Sen75U' },
+    { title: 'Pitch Deck 2025 Q4 V1', tag: 'Published v1', tagClass: 'tag-accent', href: 'https://canopi407-my.sharepoint.com/:p:/g/personal/angela_canopi_work/IQAQvAfx5-ztWIUQshIr7VNcAT91emyjVM6tyqnfN4N98Qo?e=IefG7a' },
+    { title: 'Pitch Deck 2025 Q4 V2', tag: 'Published v1', tagClass: 'tag-accent', href: 'https://canopi407-my.sharepoint.com/:p:/g/personal/angela_canopi_work/IQAz2Wip_-g2X_G9duS9O6hpATD_XASoAPd-aKFVe3bpAqo?e=z649d6' },
+  ];
 
   // Recurring 1:1 pairs — [display label (plain text), route slug]
   const RECURRING_1ON1_PAIRS = [
@@ -197,6 +202,7 @@
     'projects-documentation-raci': "Stakeholder's Records",
     'meetings-1on1-recurring': 'Recurring 1:1 Notes',
     'meetings-team-weekly': 'Weekly Team Meeting Notes',
+    'projects-completed-archive': 'Project Archive',
   };
 
   // ---------- helpers ----------
@@ -462,6 +468,11 @@
       'Weekly Team Meeting Notes', 'Minutes from the weekly team meeting.',
       MEETINGS_TEAM_WEEKLY.map((s) => ({ title: s.title, tag: s.tag, tagClass: s.tagClass, href: s.href, hrefExternal: !!s.href }))
     ) + contributeButtonHTML('Have another document to add?'),
+    'projects-completed-archive': () => docListHTML(
+      [{ label: 'Home', route: 'home' }, { label: 'Projects', route: 'projects' }, { label: 'Completed Projects', route: 'projects-completed' }, { label: 'Project Archive' }],
+      'Project Archive', 'Archived sales and pitch decks.',
+      PROJECTS_COMPLETED_ARCHIVE.map((s) => ({ title: s.title, tag: s.tag, tagClass: s.tagClass, href: s.href, hrefExternal: !!s.href }))
+    ) + contributeButtonHTML('Have another document to add?'),
     'meetings-1on1': () =>
       crumb([{ label: 'Home', route: 'home' }, { label: 'Meetings', route: 'meetings' }, { label: 'One-on-One Minutes' }]) +
       '<h1>One-on-One Minutes</h1>' +
@@ -518,6 +529,7 @@
   indexFrom(PROJECTS_DOCUMENTATION_STAKEHOLDER, 'Projects \u203a Documentation \u203a Stakeholder\u2019s Records', (s) => s.href ? { href: s.href, external: true } : null);
   indexFrom(PROJECTS_COMPLETED_MARKET_RESEARCH, 'Projects \u203a Completed Projects \u203a Market Research', (s) => s.href ? { href: s.href, external: true } : null);
   indexFrom(MEETINGS_TEAM_WEEKLY, 'Meetings \u203a Team Meetings \u203a Weekly Team Meeting Notes', (s) => s.href ? { href: s.href, external: true } : null);
+  indexFrom(PROJECTS_COMPLETED_ARCHIVE, 'Projects \u203a Completed Projects \u203a Project Archive', (s) => s.href ? { href: s.href, external: true } : null);
 
   const EXTRA_SEARCH_ITEMS = [
     // section landing pages
@@ -1053,7 +1065,6 @@
   // real internal pages with a Contribute CTA to the intake form, so the site
   // never sends someone to a folder that turns out to have nothing in it.
   const CONTRIBUTE_PAGES = [
-    { route: 'projects-completed-archive', title: 'Project Archive', crumb: [{ label: 'Home', route: 'home' }, { label: 'Projects', route: 'projects' }, { label: 'Completed Projects', route: 'projects-completed' }, { label: 'Project Archive' }] },
     { route: 'projects-completed-retro', title: 'Retrospectives / Post-Mortems', crumb: [{ label: 'Home', route: 'home' }, { label: 'Projects', route: 'projects' }, { label: 'Completed Projects', route: 'projects-completed' }, { label: 'Retrospectives / Post-Mortems' }] },
     { route: 'projects-completed-casestudies', title: 'Case Studies', crumb: [{ label: 'Home', route: 'home' }, { label: 'Projects', route: 'projects' }, { label: 'Completed Projects', route: 'projects-completed' }, { label: 'Case Studies' }] },
     { route: 'projects-documentation-techdesign', title: 'Technical Design Docs', crumb: [{ label: 'Home', route: 'home' }, { label: 'Projects', route: 'projects' }, { label: 'Documentation', route: 'projects-documentation' }, { label: 'Technical Design Docs' }] },
@@ -1101,11 +1112,11 @@
 
   function homeHTML() {
     const recentUpdates = [
+      { title: 'Project Archive', meta: 'Today', route: 'projects-completed-archive' },
+      { title: 'Templates', meta: 'Today', route: 'resources-templates' },
+      { title: 'Weekly Team Meeting Notes', meta: 'Today', route: 'meetings-team-weekly' },
       { title: 'Recurring 1:1 Notes', meta: 'Today', route: 'meetings-1on1-recurring' },
       { title: 'Investor Relations', meta: 'Today', route: 'resources-investor' },
-      { title: 'Market Research', meta: 'Today', route: 'projects-completed-lessons' },
-      { title: "Stakeholder's Records", meta: 'Today', route: 'projects-documentation-raci' },
-      { title: 'Product Team Shared Resources', meta: 'Today', route: 'team-product-shared' },
     ];
     const updateRows = recentUpdates.map((u, i) =>
       '<a href="#' + u.route + '" class="update-row' + (i === 0 ? ' featured' : '') + '">' +
