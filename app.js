@@ -85,14 +85,28 @@
     { title: 'PTO request form', tag: 'Coming Soon', tagClass: 'tag-outline' },
   ];
 
-  const RESOURCE_INVESTOR = [
+  const RESOURCE_INVESTOR_DOCS = [
     { title: 'Investor Question Bank', tag: 'Published v1', tagClass: 'tag-accent', href: 'https://canopi407-my.sharepoint.com/:w:/g/personal/dixon_canopi_work/IQBk3Rj6zB4qTra5ZO8RW6btAVmqgr_4Qg9NT_mwzTojYEg?e=XdPfdL' },
     { title: 'Investor Roadmap Q3 2026', tag: 'Published v1', tagClass: 'tag-accent', href: 'https://canopi407-my.sharepoint.com/:w:/g/personal/dixon_canopi_work/IQCOvEiEus2kT5An0WM-gSUaAeeTwffx2J6tMD3JZEMxpbE?e=yZLQ9r' },
+    { title: 'Diligence Package', tag: 'Published v1', tagClass: 'tag-accent', href: 'https://canopi407-my.sharepoint.com/:w:/g/personal/dixon_canopi_work/IQBQncYDzp2tQ5PC_iG7JEvsAXvI_bQQANxCYk-zbt_ue_4?e=Rjh047' },
+  ];
+  const RESOURCE_INVESTOR_DECKS = [
+    { title: '2026 Q2 Pitch Deck', tag: 'Published v1', tagClass: 'tag-accent', href: 'https://canopi407-my.sharepoint.com/:p:/g/personal/dixon_canopi_work/IQCHyKAvJGmkTqt2eSt01FGIAQZpooPnL5OiQEuiwPjQqUo?e=134W1b' },
   ];
 
   const TEAM_PRODUCT_SHARED = [
     { title: 'Canopi Roadmap Q3 V1', tag: 'Published v1', tagClass: 'tag-accent', href: 'https://canopi407-my.sharepoint.com/:w:/g/personal/dixon_canopi_work/IQDn7t6ygqU9QYhvoBi8MsIbAf_ymwzGpX6DN7luR7-IUwk?e=KC5XGx' },
     { title: 'Canopi Roadmap Q3 V2', tag: 'Published v1', tagClass: 'tag-accent', href: 'https://canopi407-my.sharepoint.com/:w:/g/personal/dixon_canopi_work/IQDwkMJPmZf2Tav1dEXnwygfAZ2fcqGQUcF_HYYi0nNUAW4?e=Raj7c0' },
+  ];
+
+  const PROJECTS_DOCUMENTATION_ADRS = [
+    { title: 'ABi Blueprint V2', tag: 'Published v1', tagClass: 'tag-accent', href: 'https://canopi407-my.sharepoint.com/:w:/g/personal/dixon_canopi_work/IQCc79PHA08sSa0f21nMqyQvARuioOakp--8T6dPJ4vZX50?e=FjTtaP' },
+  ];
+  const PROJECTS_DOCUMENTATION_STAKEHOLDER = [
+    { title: 'ABi SaaS Model', tag: 'Published v1', tagClass: 'tag-accent', href: 'https://canopi407-my.sharepoint.com/:x:/g/personal/dixon_canopi_work/IQDPZ4-NrlqLTZaLX3fN-XAbAaIcBJMuTmre9R8yEPaCdTk?e=XG1WsG' },
+  ];
+  const PROJECTS_COMPLETED_MARKET_RESEARCH = [
+    { title: 'Market Validation Research', tag: 'Published v1', tagClass: 'tag-accent', href: 'https://canopi407-my.sharepoint.com/:w:/r/personal/dixon_canopi_work/Documents/Dixon%20files%20to%20import/Canopi_Market_Validation_Research.docx?d=w8715d85a360748eeb5b1018850dbdd8c&csf=1&web=1&e=e8pGFS' },
   ];
 
   const ICON_DEFAULT = 'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6';
@@ -115,11 +129,11 @@
     'Engineering Team': 'm18 16 4-4-4-4 M6 8l-4 4 4 4 M14.5 4l-5 16',
     'Project Archive': 'M21 8v13H3V8 M1 3h22v5H1z M10 12h4',
     'Retrospectives / Post-Mortems': 'M3 12a9 9 0 1 0 3-6.7L3 8 M3 3v5h5',
-    'Lessons-Learned Summaries': 'M9 18h6 M10 22h4 M15.09 14c.18-.98.65-1.74 1.41-2.5A6 6 0 1 0 6.6 12.5c.79.76 1.23 1.53 1.41 2.5',
+    'Market Research': 'M9 18h6 M10 22h4 M15.09 14c.18-.98.65-1.74 1.41-2.5A6 6 0 1 0 6.6 12.5c.79.76 1.23 1.53 1.41 2.5',
     'Case Studies': 'M3 3v18h18 M18 17V9 M13 17V5 M8 17v-3',
     'Architecture Decision Records (ADRs)': 'M6 3v12 M18 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z M6 21a3 3 0 1 0 0-6 3 3 0 0 0 0 6z M18 9a9 9 0 0 1-9 9',
     'Technical Design Docs': ICON_DEFAULT + ' M16 13H8 M16 17H8 M10 9H8',
-    'Stakeholder & RACI Lists': ICON_USERS,
+    "Stakeholder's Records": ICON_USERS,
     'Requirements Docs & Acceptance Criteria': 'M9 11l3 3L22 4 M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11',
     'Cross-Team (Product × Engineering) Sync Notes': ICON_USERS,
     'Weekly Team Meeting Notes': ICON_CALENDAR,
@@ -163,6 +177,9 @@
     'team-executive': 'Executive Team', 'team-product': 'Product Team', 'team-engineering': 'Engineering Team',
     'team-executive-notes': 'Executive Team Meeting Notes', 'team-product-notes': 'Product Team Meeting Notes', 'team-engineering-notes': 'Engineering Team Meeting Notes',
     'team-product-shared': 'Product Team Shared Resources',
+    'projects-completed-lessons': 'Market Research',
+    'projects-documentation-adrs': 'Architecture Decision Records (ADRs)',
+    'projects-documentation-raci': "Stakeholder's Records",
   };
 
   // ---------- helpers ----------
@@ -203,6 +220,9 @@
     return crumb(crumbItems) + '<h1>' + title + '</h1>' +
       '<p class="section-lead">' + lead + '</p>' +
       '<div class="doclist">' + rows.map(docRowHTML).join('') + '</div>';
+  }
+  function docListSectionHTML(heading, rows) {
+    return '<h2>' + heading + '</h2><div class="doclist">' + rows.map(docRowHTML).join('') + '</div>';
   }
 
   const CONTRIBUTE_FORM_URL = 'https://forms.cloud.microsoft/r/8cPduYGSqV';
@@ -273,21 +293,21 @@
     ),
     'projects-completed': () => sectionIndexHTML(
       [{ label: 'Home', route: 'home' }, { label: 'Projects', route: 'projects' }, { label: 'Completed Projects' }],
-      'Completed Projects', "Nothing's been added yet for any of these &mdash; open one and use Contribute to submit a document.",
+      'Completed Projects', "Records from finished project work, gathered by category. Anything still empty has a Contribute button to submit a document.",
       [
         { label: 'Project Archive', route: 'projects-completed-archive' },
         { label: 'Retrospectives / Post-Mortems', route: 'projects-completed-retro' },
-        { label: 'Lessons-Learned Summaries', route: 'projects-completed-lessons' },
+        { label: 'Market Research', route: 'projects-completed-lessons' },
         { label: 'Case Studies', route: 'projects-completed-casestudies' },
       ].map(withIcon)
     ),
     'projects-documentation': () => sectionIndexHTML(
       [{ label: 'Home', route: 'home' }, { label: 'Projects', route: 'projects' }, { label: 'Documentation' }],
-      'Documentation', "Working documentation created by Product and Engineering as projects happen &mdash; ADRs, design docs, RACI lists, requirements. Nothing's been added yet; use Contribute on each page to submit one.",
+      'Documentation', "Working documentation created by Product and Engineering as projects happen &mdash; ADRs, design docs, stakeholder records, requirements. Anything still empty has a Contribute button to submit a document.",
       [
         { label: 'Architecture Decision Records (ADRs)', route: 'projects-documentation-adrs' },
         { label: 'Technical Design Docs', route: 'projects-documentation-techdesign' },
-        { label: 'Stakeholder & RACI Lists', route: 'projects-documentation-raci' },
+        { label: "Stakeholder's Records", route: 'projects-documentation-raci' },
         { label: 'Requirements Docs & Acceptance Criteria', route: 'projects-documentation-requirements' },
       ].map(withIcon)
     ),
@@ -385,15 +405,32 @@
       'Forms', 'Fillable forms for common requests.',
       RESOURCE_FORMS.map((s) => ({ title: s.title, tag: s.tag, tagClass: s.tagClass, href: s.href, hrefExternal: !!s.href }))
     ),
-    'resources-investor': () => docListHTML(
-      [{ label: 'Home', route: 'home' }, { label: 'Resources', route: 'resources' }, { label: 'Investor Relations' }],
-      'Investor Relations', 'Documents for current and prospective investors.',
-      RESOURCE_INVESTOR.map((s) => ({ title: s.title, tag: s.tag, tagClass: s.tagClass, href: s.href, hrefExternal: !!s.href }))
-    ) + contributeButtonHTML('Have another investor document to add?'),
+    'resources-investor': () =>
+      crumb([{ label: 'Home', route: 'home' }, { label: 'Resources', route: 'resources' }, { label: 'Investor Relations' }]) +
+      '<h1>Investor Relations</h1>' +
+      '<p class="section-lead">Documents for current and prospective investors.</p>' +
+      docListSectionHTML('Documents', RESOURCE_INVESTOR_DOCS.map((s) => ({ title: s.title, tag: s.tag, tagClass: s.tagClass, href: s.href, hrefExternal: !!s.href }))) +
+      docListSectionHTML('Presentations', RESOURCE_INVESTOR_DECKS.map((s) => ({ title: s.title, tag: s.tag, tagClass: s.tagClass, href: s.href, hrefExternal: !!s.href }))) +
+      contributeButtonHTML('Have another investor document to add?'),
     'team-product-shared': () => docListHTML(
       [{ label: 'Home', route: 'home' }, { label: 'Team Spaces', route: 'team-spaces' }, { label: 'Product Team', route: 'team-product' }, { label: 'Shared Resources' }],
       'Product Team Shared Resources', 'Shared documents for the product team.',
       TEAM_PRODUCT_SHARED.map((s) => ({ title: s.title, tag: s.tag, tagClass: s.tagClass, href: s.href, hrefExternal: !!s.href }))
+    ) + contributeButtonHTML('Have another document to add?'),
+    'projects-completed-lessons': () => docListHTML(
+      [{ label: 'Home', route: 'home' }, { label: 'Projects', route: 'projects' }, { label: 'Completed Projects', route: 'projects-completed' }, { label: 'Market Research' }],
+      'Market Research', 'Market research conducted for Canopi.',
+      PROJECTS_COMPLETED_MARKET_RESEARCH.map((s) => ({ title: s.title, tag: s.tag, tagClass: s.tagClass, href: s.href, hrefExternal: !!s.href }))
+    ) + contributeButtonHTML('Have another document to add?'),
+    'projects-documentation-adrs': () => docListHTML(
+      [{ label: 'Home', route: 'home' }, { label: 'Projects', route: 'projects' }, { label: 'Documentation', route: 'projects-documentation' }, { label: 'Architecture Decision Records (ADRs)' }],
+      'Architecture Decision Records (ADRs)', 'Architecture decision records for Canopi projects.',
+      PROJECTS_DOCUMENTATION_ADRS.map((s) => ({ title: s.title, tag: s.tag, tagClass: s.tagClass, href: s.href, hrefExternal: !!s.href }))
+    ) + contributeButtonHTML('Have another document to add?'),
+    'projects-documentation-raci': () => docListHTML(
+      [{ label: 'Home', route: 'home' }, { label: 'Projects', route: 'projects' }, { label: 'Documentation', route: 'projects-documentation' }, { label: "Stakeholder's Records" }],
+      "Stakeholder's Records", 'Stakeholder records for Canopi projects.',
+      PROJECTS_DOCUMENTATION_STAKEHOLDER.map((s) => ({ title: s.title, tag: s.tag, tagClass: s.tagClass, href: s.href, hrefExternal: !!s.href }))
     ) + contributeButtonHTML('Have another document to add?'),
     'meetings-1on1': () => docListHTML(
       [{ label: 'Home', route: 'home' }, { label: 'Meetings', route: 'meetings' }, { label: 'One-on-One Minutes' }],
@@ -445,8 +482,12 @@
   indexFrom(PROJECT_TEMPLATES, 'Projects \u203a Templates', (s) => ({ href: s.href, download: true }));
   indexFrom(RESOURCE_TEMPLATES, 'Resources \u203a Templates', (s) => ({ href: s.href, download: true }));
   indexFrom(RESOURCE_FORMS, 'Resources \u203a Forms', (s) => s.href ? { href: s.href, external: true } : null);
-  indexFrom(RESOURCE_INVESTOR, 'Resources \u203a Investor Relations', (s) => s.href ? { href: s.href, external: true } : null);
+  indexFrom(RESOURCE_INVESTOR_DOCS, 'Resources \u203a Investor Relations \u203a Documents', (s) => s.href ? { href: s.href, external: true } : null);
+  indexFrom(RESOURCE_INVESTOR_DECKS, 'Resources \u203a Investor Relations \u203a Presentations', (s) => s.href ? { href: s.href, external: true } : null);
   indexFrom(TEAM_PRODUCT_SHARED, 'Team Spaces \u203a Product Team \u203a Shared Resources', (s) => s.href ? { href: s.href, external: true } : null);
+  indexFrom(PROJECTS_DOCUMENTATION_ADRS, 'Projects \u203a Documentation \u203a ADRs', (s) => s.href ? { href: s.href, external: true } : null);
+  indexFrom(PROJECTS_DOCUMENTATION_STAKEHOLDER, 'Projects \u203a Documentation \u203a Stakeholder\u2019s Records', (s) => s.href ? { href: s.href, external: true } : null);
+  indexFrom(PROJECTS_COMPLETED_MARKET_RESEARCH, 'Projects \u203a Completed Projects \u203a Market Research', (s) => s.href ? { href: s.href, external: true } : null);
 
   const EXTRA_SEARCH_ITEMS = [
     // section landing pages
@@ -460,12 +501,12 @@
     // projects > completed (no data yet — contribute pages)
     { title: 'Project Archive', meta: 'Projects \u203a Completed Projects', route: 'projects-completed-archive' },
     { title: 'Retrospectives / Post-Mortems', meta: 'Projects \u203a Completed Projects', route: 'projects-completed-retro' },
-    { title: 'Lessons-Learned Summaries', meta: 'Projects \u203a Completed Projects', route: 'projects-completed-lessons' },
+    { title: 'Market Research', meta: 'Projects \u203a Completed Projects', route: 'projects-completed-lessons' },
     { title: 'Case Studies', meta: 'Projects \u203a Completed Projects', route: 'projects-completed-casestudies' },
     // projects > documentation (no data yet — contribute pages)
     { title: 'Architecture Decision Records (ADRs)', meta: 'Projects \u203a Documentation', route: 'projects-documentation-adrs' },
     { title: 'Technical Design Docs', meta: 'Projects \u203a Documentation', route: 'projects-documentation-techdesign' },
-    { title: 'Stakeholder & RACI Lists', meta: 'Projects \u203a Documentation', route: 'projects-documentation-raci' },
+    { title: "Stakeholder's Records", meta: 'Projects \u203a Documentation', route: 'projects-documentation-raci' },
     { title: 'Requirements Docs & Acceptance Criteria', meta: 'Projects \u203a Documentation', route: 'projects-documentation-requirements' },
     // meetings
     { title: 'Cross-Team (Product \u00d7 Engineering) Sync Notes', meta: 'Meetings \u203a Team Meetings', route: 'meetings-team-crossteam' },
@@ -981,11 +1022,8 @@
   const CONTRIBUTE_PAGES = [
     { route: 'projects-completed-archive', title: 'Project Archive', crumb: [{ label: 'Home', route: 'home' }, { label: 'Projects', route: 'projects' }, { label: 'Completed Projects', route: 'projects-completed' }, { label: 'Project Archive' }] },
     { route: 'projects-completed-retro', title: 'Retrospectives / Post-Mortems', crumb: [{ label: 'Home', route: 'home' }, { label: 'Projects', route: 'projects' }, { label: 'Completed Projects', route: 'projects-completed' }, { label: 'Retrospectives / Post-Mortems' }] },
-    { route: 'projects-completed-lessons', title: 'Lessons-Learned Summaries', crumb: [{ label: 'Home', route: 'home' }, { label: 'Projects', route: 'projects' }, { label: 'Completed Projects', route: 'projects-completed' }, { label: 'Lessons-Learned Summaries' }] },
     { route: 'projects-completed-casestudies', title: 'Case Studies', crumb: [{ label: 'Home', route: 'home' }, { label: 'Projects', route: 'projects' }, { label: 'Completed Projects', route: 'projects-completed' }, { label: 'Case Studies' }] },
-    { route: 'projects-documentation-adrs', title: 'Architecture Decision Records (ADRs)', crumb: [{ label: 'Home', route: 'home' }, { label: 'Projects', route: 'projects' }, { label: 'Documentation', route: 'projects-documentation' }, { label: 'Architecture Decision Records (ADRs)' }] },
     { route: 'projects-documentation-techdesign', title: 'Technical Design Docs', crumb: [{ label: 'Home', route: 'home' }, { label: 'Projects', route: 'projects' }, { label: 'Documentation', route: 'projects-documentation' }, { label: 'Technical Design Docs' }] },
-    { route: 'projects-documentation-raci', title: 'Stakeholder & RACI Lists', crumb: [{ label: 'Home', route: 'home' }, { label: 'Projects', route: 'projects' }, { label: 'Documentation', route: 'projects-documentation' }, { label: 'Stakeholder & RACI Lists' }] },
     { route: 'projects-documentation-requirements', title: 'Requirements Docs & Acceptance Criteria', crumb: [{ label: 'Home', route: 'home' }, { label: 'Projects', route: 'projects' }, { label: 'Documentation', route: 'projects-documentation' }, { label: 'Requirements Docs & Acceptance Criteria' }] },
     { route: 'meetings-team-crossteam', title: 'Cross-Team (Product × Engineering) Sync Notes', crumb: [{ label: 'Home', route: 'home' }, { label: 'Meetings', route: 'meetings' }, { label: 'Team Meetings', route: 'meetings-team' }, { label: 'Cross-Team Sync Notes' }] },
     { route: 'meetings-team-weekly', title: 'Weekly Team Meeting Notes', crumb: [{ label: 'Home', route: 'home' }, { label: 'Meetings', route: 'meetings' }, { label: 'Team Meetings', route: 'meetings-team' }, { label: 'Weekly Team Meeting Notes' }] },
