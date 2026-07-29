@@ -234,17 +234,17 @@ a.search-result-row:hover .search-result-title { text-decoration-color: currentC
 
 /* — section index cards — */
 .section-lead { color: var(--color-neutral-700); margin: 0 0 var(--space-6); max-width: 60ch; }
-.section-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: var(--space-3); }
+.section-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: var(--space-4); }
 .section-card {
   border-radius: 16px; text-decoration: none; color: var(--color-text);
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-2);
-  padding: var(--space-6) var(--space-3); text-align: center; font-family: var(--font-heading);
-  font-weight: 600; font-size: 14.5px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-3);
+  padding: var(--space-8) var(--space-4); text-align: center; font-family: var(--font-heading);
+  font-weight: 600; font-size: 16.5px; min-height: 180px; box-sizing: border-box;
   background: var(--color-surface); border: 1px solid var(--color-divider);
 }
 .section-card:hover { text-decoration: none; background: var(--color-accent-100); }
-.section-card svg { stroke: var(--color-accent); }
-.section-card-external { font-size: 10px; color: var(--color-neutral-600); font-family: var(--font-body); font-weight: 400; }
+.section-card svg { stroke: var(--color-accent); width: 30px; height: 30px; }
+.section-card-external { font-size: 11px; color: var(--color-neutral-600); font-family: var(--font-body); font-weight: 400; }
 
 /* — doc list — */
 .doclist { border: 1px solid var(--color-divider); border-radius: var(--radius-md); overflow: hidden; }
@@ -272,11 +272,17 @@ a.search-result-row:hover .search-result-title { text-decoration-color: currentC
 
 /* — empty "no data yet, contribute" state — */
 .empty-state {
-  border: 1px dashed var(--color-divider); border-radius: 14px;
-  padding: var(--space-8) var(--space-6); text-align: center; max-width: 48ch;
+  border: 1px dashed var(--color-divider); border-radius: 16px; background: var(--color-surface);
+  padding: 72px var(--space-6); text-align: center;
+  display: flex; flex-direction: column; align-items: center;
 }
-.empty-state-title { font-family: var(--font-heading); font-weight: 600; font-size: 18px; margin: 0 0 var(--space-2); }
-.empty-state-body { color: var(--color-neutral-700); margin: 0 0 var(--space-4); }
+.empty-state-icon {
+  width: 64px; height: 64px; border-radius: 50%; background: var(--color-accent-200);
+  display: flex; align-items: center; justify-content: center; margin-bottom: var(--space-4);
+}
+.empty-state-icon svg { stroke: var(--color-accent); width: 30px; height: 30px; }
+.empty-state-title { font-family: var(--font-heading); font-weight: 600; font-size: 22px; margin: 0 0 var(--space-2); }
+.empty-state-body { color: var(--color-neutral-700); margin: 0 0 var(--space-5); max-width: 42ch; }
 
 @media (max-width: 900px) {
   .shell { padding: var(--space-3); }

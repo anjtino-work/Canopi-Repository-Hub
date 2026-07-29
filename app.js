@@ -207,6 +207,7 @@
   function emptyStateHTML(crumbItems, title) {
     return crumb(crumbItems) + '<h1>' + title + '</h1>' +
       '<div class="empty-state">' +
+        '<span class="empty-state-icon">' + icon(ICON_FOLDER_OPEN, 30) + '</span>' +
         '<p class="empty-state-title">No available data</p>' +
         '<p class="empty-state-body">Nothing has been added here yet. If you have a document for this section, contribute it and it&rsquo;ll get added.</p>' +
         '<a href="' + CONTRIBUTE_FORM_URL + '" target="_blank" rel="noopener" class="btn btn-primary">Contribute</a>' +
