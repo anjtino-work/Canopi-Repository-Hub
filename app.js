@@ -74,6 +74,7 @@
     { title: 'Presentation / deck template', file: 'Canopi_Presentation_Template.pptx' },
     { title: 'Proposal template', file: 'Proposal_Template.docx' },
     { title: 'SOP / process doc template', file: 'SOP_Process_Doc_Template.docx' },
+    { title: 'PPT Template (Standard)', file: 'PPT_Template_Standard.pptx' },
   ].map((t) => ({ title: t.title, tag: 'Published v1', tagClass: 'tag-accent', href: 'files/' + t.file }));
 
   const RESOURCE_FORMS = [
