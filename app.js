@@ -109,6 +109,17 @@
     { title: 'Market Validation Research', tag: 'Published v1', tagClass: 'tag-accent', href: 'https://canopi407-my.sharepoint.com/:w:/r/personal/dixon_canopi_work/Documents/Dixon%20files%20to%20import/Canopi_Market_Validation_Research.docx?d=w8715d85a360748eeb5b1018850dbdd8c&csf=1&web=1&e=e8pGFS' },
   ];
 
+  // Recurring 1:1 pairs — [display label (plain text), route slug]
+  const RECURRING_1ON1_PAIRS = [
+    ['Bionka<>Anj', 'bionka-anj'],
+    ['Bionka<>Dixon', 'bionka-dixon'],
+    ['Bionka<>Jagun', 'bionka-jagun'],
+    ['Dixon<>Puja', 'dixon-puja'],
+    ['Dixon<>Sebastian', 'dixon-sebastian'],
+    ['Jagun<>John', 'jagun-john'],
+    ['Jagun<>Alvin', 'jagun-alvin'],
+  ];
+
   const ICON_DEFAULT = 'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6';
   const ICON_USERS = 'M16 3.13a4 4 0 0 1 0 7.75 M13 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2 M22.5 21v-2a4 4 0 0 0-3-3.87 M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8';
   const ICON_CALENDAR = 'M8 2v4 M16 2v4 M3 10h18 M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z';
@@ -180,9 +191,13 @@
     'projects-completed-lessons': 'Market Research',
     'projects-documentation-adrs': 'Architecture Decision Records (ADRs)',
     'projects-documentation-raci': "Stakeholder's Records",
+    'meetings-1on1-recurring': 'Recurring 1:1 Notes',
   };
 
   // ---------- helpers ----------
+  function escapeHtml(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
   function icon(d, size) {
     size = size || 20;
     return '<svg width="' + size + '" height="' + size + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="' + d + '"/></svg>';
@@ -376,6 +391,11 @@
         { label: 'Engineering Team Shared Resources', route: 'team-engineering-shared' },
       ].map(withIcon)
     ),
+    'meetings-1on1-recurring': () => sectionIndexHTML(
+      [{ label: 'Home', route: 'home' }, { label: 'Meetings', route: 'meetings' }, { label: 'One-on-One Minutes', route: 'meetings-1on1' }, { label: 'Recurring 1:1 Notes' }],
+      'Recurring 1:1 Notes', 'Each pair below has its own private folder, visible only to the two people involved. Use Contribute on a pair&rsquo;s page to add its notes folder link.',
+      RECURRING_1ON1_PAIRS.map(([label, slug]) => ({ label: escapeHtml(label), route: 'meetings-1on1-recurring-' + slug, icon: ICON_USERS }))
+    ),
   };
 
   // ---------- doc list route table ----------
@@ -434,10 +454,10 @@
     ) + contributeButtonHTML('Have another document to add?'),
     'meetings-1on1': () => docListHTML(
       [{ label: 'Home', route: 'home' }, { label: 'Meetings', route: 'meetings' }, { label: 'One-on-One Minutes' }],
-      'One-on-One Minutes', 'The minutes template is downloadable here. Recurring notes link out to SharePoint folders shared only with the specific people involved &mdash; nobody else can open them.',
+      'One-on-One Minutes', 'The minutes template is downloadable here. Recurring notes are organized by pair, private to the two people involved.',
       [
         { title: 'Manager 1:1 Minutes Template', tag: 'Published v1', tagClass: 'tag-accent', href: 'files/Standard_Minutes_Template.docx', hrefDownload: true },
-        { title: 'Recurring 1:1 Notes (per employee, private)', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgDsXs_YK6f_ToTie2fvwi2EARVQepOayQPvOnJCrgcH2CA?e=dwskKI', hrefExternal: true },
+        { title: 'Recurring 1:1 Notes (per employee, private)', route: 'meetings-1on1-recurring' },
       ]
     ),
     'kb-sops': () => docListHTML(
@@ -512,7 +532,7 @@
     { title: 'Cross-Team (Product \u00d7 Engineering) Sync Notes', meta: 'Meetings \u203a Team Meetings', route: 'meetings-team-crossteam' },
     { title: 'Weekly Team Meeting Notes', meta: 'Meetings \u203a Team Meetings', route: 'meetings-team-weekly' },
     { title: 'Manager 1:1 Minutes Template', meta: 'Meetings \u203a One-on-One Minutes', href: 'files/Standard_Minutes_Template.docx', download: true },
-    { title: 'Recurring 1:1 Notes (per employee, private)', meta: 'Meetings \u203a One-on-One Minutes', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgDsXs_YK6f_ToTie2fvwi2EARVQepOayQPvOnJCrgcH2CA?e=dwskKI', external: true },
+    { title: 'Recurring 1:1 Notes', meta: 'Meetings \u203a One-on-One Minutes', route: 'meetings-1on1-recurring' },
     // resources
     { title: 'Brand Assets', meta: 'Resources', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgC3JSp0HpBOSLVFFR4ujSnPAfpYlcfj-HFJf6T4Uf-6QeU?e=FIoTGv', external: true, keywords: 'logo design brand' },
     { title: 'Executive Team Shared Resources', meta: 'Resources \u203a Shared Documents', route: 'team-executive-shared' },
@@ -533,6 +553,9 @@
     { title: 'Engineering Standup / Sprint Planning & Retro Notes', meta: 'Team Spaces \u203a Engineering Team', route: 'team-engineering-notes-standup' },
   ];
   SEARCH_INDEX.push(...EXTRA_SEARCH_ITEMS);
+  RECURRING_1ON1_PAIRS.forEach(([label, slug]) => {
+    SEARCH_INDEX.push({ title: escapeHtml(label), keywords: label.toLowerCase(), meta: 'Meetings › One-on-One Minutes › Recurring 1:1 Notes', route: 'meetings-1on1-recurring-' + slug });
+  });
 
   // ---------- detail pages (static content) ----------
   const DETAIL_PAGES = {
@@ -1036,9 +1059,18 @@
     { route: 'team-product-notes-sync', title: 'Product Team Sync Notes', crumb: [{ label: 'Home', route: 'home' }, { label: 'Team Spaces', route: 'team-spaces' }, { label: 'Product Team', route: 'team-product' }, { label: 'Meeting Notes', route: 'team-product-notes' }, { label: 'Product Team Sync Notes' }] },
     { route: 'team-engineering-notes-standup', title: 'Engineering Standup / Sprint Planning & Retro Notes', crumb: [{ label: 'Home', route: 'home' }, { label: 'Team Spaces', route: 'team-spaces' }, { label: 'Engineering Team', route: 'team-engineering' }, { label: 'Meeting Notes', route: 'team-engineering-notes' }, { label: 'Engineering Standup / Sprint Planning & Retro Notes' }] },
   ];
+  RECURRING_1ON1_PAIRS.forEach(([label, slug]) => {
+    const safeLabel = escapeHtml(label);
+    CONTRIBUTE_PAGES.push({
+      route: 'meetings-1on1-recurring-' + slug,
+      title: safeLabel,
+      plainTitle: label,
+      crumb: [{ label: 'Home', route: 'home' }, { label: 'Meetings', route: 'meetings' }, { label: 'One-on-One Minutes', route: 'meetings-1on1' }, { label: 'Recurring 1:1 Notes', route: 'meetings-1on1-recurring' }, { label: safeLabel }],
+    });
+  });
   CONTRIBUTE_PAGES.forEach((p) => {
     DETAIL_PAGES[p.route] = emptyStateHTML(p.crumb, p.title);
-    TITLES[p.route] = p.title;
+    TITLES[p.route] = p.plainTitle || p.title;
   });
 
   // ---------- home ----------
