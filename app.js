@@ -98,6 +98,7 @@
   const TEAM_PRODUCT_SHARED = [
     { title: 'Canopi Roadmap Q3 V1', tag: 'Published v1', tagClass: 'tag-accent', href: 'https://canopi407-my.sharepoint.com/:w:/g/personal/dixon_canopi_work/IQDn7t6ygqU9QYhvoBi8MsIbAf_ymwzGpX6DN7luR7-IUwk?e=KC5XGx' },
     { title: 'Canopi Roadmap Q3 V2', tag: 'Published v1', tagClass: 'tag-accent', href: 'https://canopi407-my.sharepoint.com/:w:/g/personal/dixon_canopi_work/IQDwkMJPmZf2Tav1dEXnwygfAZ2fcqGQUcF_HYYi0nNUAW4?e=Raj7c0' },
+    { title: 'Canopi Roadmap Q3 V3', tag: 'Published v1', tagClass: 'tag-accent', href: 'https://canopi407-my.sharepoint.com/:w:/g/personal/angela_canopi_work/IQDG2myTs8OHQaqZkTgEYpKDAUZNWtLI3afXJE_z5BP1XXo?e=jTVaju' },
   ];
 
   const PROJECTS_DOCUMENTATION_ADRS = [
@@ -113,6 +114,7 @@
   ];
   const TEAM_ENGINEERING_SHARED = [
     { title: 'Credential File References', tag: 'Published v1', tagClass: 'tag-accent', href: 'https://canopi407-my.sharepoint.com/:f:/g/personal/angela_canopi_work/IgD5CmEP_GVdRrzjBN3Y-YuHAdEt5u5iyHiVZqjxOAtBwFs?e=D3Vhzs' },
+    { title: 'Canopi Roadmap Q3 V3', tag: 'Published v1', tagClass: 'tag-accent', href: 'https://canopi407-my.sharepoint.com/:w:/g/personal/angela_canopi_work/IQDG2myTs8OHQaqZkTgEYpKDAUZNWtLI3afXJE_z5BP1XXo?e=jTVaju' },
   ];
   const PROJECTS_COMPLETED_MARKET_RESEARCH = [
     { title: 'Market Validation Research', tag: 'Published v1', tagClass: 'tag-accent', href: 'https://canopi407-my.sharepoint.com/:w:/r/personal/dixon_canopi_work/Documents/Dixon%20files%20to%20import/Canopi_Market_Validation_Research.docx?d=w8715d85a360748eeb5b1018850dbdd8c&csf=1&web=1&e=e8pGFS' },
